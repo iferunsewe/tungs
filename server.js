@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 var db;
 
 // Connect to the database before starting the application server.
+console.log("MONGODB_URI-------------------------------------------------------------" + process.env.MONGODB_URI)
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     if (err) {
         console.log(err);
