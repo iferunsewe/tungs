@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" "
   },
   "dependencies": {
     "@angular/common": "^2.1.0",
@@ -20,6 +20,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "express-jwt": "^5.0.0",
@@ -32,8 +33,12 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "q": "^1.4.1",
+    "reflect-metadata": "^0.1.8",
     "request": "^2.75.0",
     "rootpath": "^0.1.2",
-    "rxjs": "^5.0.0-beta.12"
+    "rxjs": "^5.0.0-beta.12",
+    "socket.io": "^1.5.0",
+    "systemjs": "^0.19.39",
+    "zone.js": "^0.6.25"
   }
 }

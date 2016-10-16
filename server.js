@@ -1,13 +1,21 @@
+require('rootpath')();
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 var session = require('express-session');
+var expressJwt = require('express-jwt');
 
 var USERS_COLLECTION = "users";
 
 var app = express();
+
+// Initialize the app.
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});
 
 app.set('views', path.join(__dirname, 'app'));
 app.engine('html', require('ejs').renderFile);
@@ -16,14 +24,15 @@ app.set('view engine', 'html');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(session({ secret: process.env.TUNGS_SECRET, resave: false, saveUninitialized: true }));
+
 // routes
 app.use('/login', require('./controllers/login.controller'));
 app.use('/register', require('./controllers/register.controller'));
-app.use('/app', require('./controllers/app.contoller.js'));
-app.use('/api/users', require('./controllers/api/users.contoller.js'));
+app.use('/app', require('./controllers/app.controller'));
+app.use('/api/users', require('./controllers/api/users.controller'));
 
-// use JWT auth to secure the api
-//app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
+ //use JWT auth to secure the api
+app.use('/api', expressJwt({ secret: process.env.TUNGS_SECRET }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
 
 // make '/app' default route
 app.get('/', function (req, res) {
@@ -44,12 +53,6 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     // Save database object from the callback for reuse.
     db = database;
     console.log("Database connection ready");
-
-    // Initialize the app.
-    var server = app.listen(process.env.PORT || 8080, function () {
-        var port = server.address().port;
-        console.log("App now running on port", port);
-    });
 });
 
 // USERS API ROUTES BELOW
