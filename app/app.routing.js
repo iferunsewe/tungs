@@ -1,4 +1,4 @@
-var router_1 = require('angular2/router');
+var router_1 = require('@angular/router');
 var index_1 = require('./login/index');
 var index_2 = require("./home/index");
 var index_3 = require("./guards/index");

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../angular2-jwt-authentication-example/.idea/angular2-jwt-authentication-example.iml" filepath="$PROJECT_DIR$/../angular2-jwt-authentication-example/.idea/angular2-jwt-authentication-example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mean-stack-registration-login-example/.idea/mean-stack-registration-login-example.iml" filepath="$PROJECT_DIR$/../mean-stack-registration-login-example/.idea/mean-stack-registration-login-example.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tungs.iml" filepath="$PROJECT_DIR$/.idea/tungs.iml" />
     </modules>
   </component>

@@ -3,18 +3,38 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
+var session = require('express-session');
 
 var USERS_COLLECTION = "users";
 
 var app = express();
-app.use(express.static(__dirname + "/public"));
+
+app.set('views', path.join(__dirname, 'app'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(session({ secret: process.env.TUNGS_SECRET, resave: false, saveUninitialized: true }));
+// routes
+app.use('/login', require('./controllers/login.controller'));
+app.use('/register', require('./controllers/register.controller'));
+app.use('/app', require('./controllers/app.contoller.js'));
+app.use('/api/users', require('./controllers/api/users.contoller.js'));
+
+// use JWT auth to secure the api
+//app.use('/api', expressJwt({ secret: config.secret }).unless({ path: ['/api/users/authenticate', '/api/users/register'] }));
+
+// make '/app' default route
+app.get('/', function (req, res) {
+    console.log("INSIDE GET REQUEST SERVER CONTROLLER");
+    return res.redirect('/app');
+});
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
 // Connect to the database before starting the application server.
-console.log("MONGODB_URI-------------------------------------------------------------" + process.env.MONGODB_URI)
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
     if (err) {
         console.log(err);

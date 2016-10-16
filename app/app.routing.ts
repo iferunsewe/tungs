@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from 'angular2/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/index';
 import { HomeComponent  } from "./home/index";

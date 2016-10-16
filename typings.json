@@ -1,0 +1,7 @@
+{
+  "name": "TUNGS",
+  "dependencies": {},
+  "globalDependencies": {
+    "node": "registry:env/node#0.12.0+20161011193755"
+  }
+}

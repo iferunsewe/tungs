@@ -1,7 +1,12 @@
-import { Component, OnInit } from 'angular2/core';
-import { Router } from 'angular2/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../services/index';
+
+@Component({
+    moduleId: module.id,
+    templateUrl: 'login.component.html'
+})
 
 export class LoginComponent implements OnInit {
     model: any = {};
@@ -18,6 +23,7 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
+        console.log("LOGGING IN");
         this.loading = true;
         this.authenticationService.login(this.model.email, this.model.password).subscribe(result => {
             if (result === true) {
