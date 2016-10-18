@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/map');
-var index_1 = require('index');
+var index_1 = require('./index');
 var UserService = (function () {
     function UserService(http, authenticationService) {
         this.http = http;
@@ -27,10 +27,9 @@ var UserService = (function () {
     };
     UserService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, (typeof (_a = typeof index_1.AuthenticationService !== 'undefined' && index_1.AuthenticationService) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [http_1.Http, index_1.AuthenticationService])
     ], UserService);
     return UserService;
-    var _a;
 }());
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

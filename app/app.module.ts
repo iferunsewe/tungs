@@ -8,10 +8,9 @@ import { routing }        from './app.routing';
 
 import { AuthGuard } from './guards/index';
 
-import { AuthenticationService } from './services/authentication.service';
-import { UserService } from './services/user.service';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { AuthenticationService, UserService } from './services/index';
+import { LoginComponent } from './login/index';
+import { HomeComponent } from './home/index';
 
 @NgModule({
     imports: [

@@ -42,10 +42,9 @@ var LoginComponent = (function () {
             moduleId: module.id,
             templateUrl: 'login.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.Router, (typeof (_a = typeof index_1.AuthenticationService !== 'undefined' && index_1.AuthenticationService) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [router_1.Router, index_1.AuthenticationService])
     ], LoginComponent);
     return LoginComponent;
-    var _a;
 }());
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

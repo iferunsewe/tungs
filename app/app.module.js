@@ -15,10 +15,9 @@ var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');
 var index_1 = require('./guards/index');
-var authentication_service_1 = require('./services/authentication.service');
-var user_service_1 = require('./services/user.service');
-var login_component_1 = require('./login/login.component');
-var home_component_1 = require('./home/home.component');
+var index_2 = require('./services/index');
+var index_3 = require('./login/index');
+var index_4 = require('./home/index');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,13 +31,13 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                login_component_1.LoginComponent,
-                home_component_1.HomeComponent
+                index_3.LoginComponent,
+                index_4.HomeComponent
             ],
             providers: [
                 index_1.AuthGuard,
-                authentication_service_1.AuthenticationService,
-                user_service_1.UserService
+                index_2.AuthenticationService,
+                index_2.UserService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
