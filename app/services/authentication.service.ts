@@ -14,7 +14,7 @@ export class AuthenticationService {
     }
 
     login(email, password): Observable<boolean>{
-        return this.http.post('/login', JSON.stringify({ email: email, password: password }))
+        return this.http.post('http://localhost:8080/login', JSON.stringify({ email: email, password: password }))
             .map((response: Response) => {
                 let token = response.json() && response.json().token;
                 if(token){

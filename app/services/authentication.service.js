@@ -20,7 +20,7 @@ var AuthenticationService = (function () {
     }
     AuthenticationService.prototype.login = function (email, password) {
         var _this = this;
-        return this.http.post('/login', JSON.stringify({ email: email, password: password }))
+        return this.http.post('http://localhost:8080/login', JSON.stringify({ email: email, password: password }))
             .map(function (response) {
             var token = response.json() && response.json().token;
             if (token) {
