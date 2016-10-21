@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    console.log("INSIDE POST REQUEST REG CONTROLLER");
+    console.log("INSIDE POST REQUEST LOGIN CONTROLLER");
     // authenticate using api to maintain clean separation between layers
     request.post({
         url: "http://localhost:" + process.env.TUNGS_PORT + "/api/users/authenticate",
@@ -25,11 +25,13 @@ router.post('/', function (req, res) {
         json: true
     }, function (error, response, body) {
         if (error) {
-            return res.render('login', { error: 'An error occurred' });
+            console.log("ERROR")
+            return res.render(loginHtml, { error: 'An error occurred' });
         }
 
         if (!body.token) {
-            return res.render('login', { error: body, email: req.body.email });
+            console.log("TOKEN")
+            return res.render(loginHtml, { error: body, email: req.body.email });
         }
 
         // save JWT token in the session to make it available to the angular app

@@ -23,7 +23,7 @@ app.set('view engine', 'html');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({ secret: process.env.TUNGS_SECRET, resave: false, saveUninitialized: true }));
+app.use(session({ secret: process.env.TUNGS_SECRET, resave: false, saveUninitialized: true}));
 
 // routes
 app.use('/login', require('./controllers/login.controller'));

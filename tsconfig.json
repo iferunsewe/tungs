@@ -9,6 +9,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "removeComments": false,
-        "suppressImplicitAnyIndexErrors": true 
+        "suppressImplicitAnyIndexErrors": true
     }
 }
