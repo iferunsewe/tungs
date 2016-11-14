@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/../general_assembly/wdi9/WDI_LDN_9_CLASSNOTES" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../match_fixing" vcs="Git" />
   </component>
 </project>
