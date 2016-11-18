@@ -1,16 +1,25 @@
 @Schools = React.createClass
   getInitialState: ->
     schools: @props.data
+
   getDefaultProps: ->
     schools: []
+
+  addSchool: (school) ->
+    schools = @state.schools.slice()
+    schools.push school
+    @setState schools: schools
+
   render: ->
     React.DOM.div
       className: 'schools'
       React.DOM.h2
         className: 'title'
         'Schools'
+      React.createElement SchoolForm, handleNewSchool: @addSchool
+      React.DOM.hr null
       React.DOM.table
-        class: 'table table-bordered'
+        className: 'table table-bordered'
         React.DOM.thead null,
           React.DOM.tr null,
             React.DOM.th null, 'Name'
