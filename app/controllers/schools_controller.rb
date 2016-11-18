@@ -13,6 +13,12 @@ class SchoolsController < ApplicationController
     end
   end
 
+  def destroy
+    @school = School.find(params[:id])
+    @school.destroy
+    head :no_content
+  end
+
   private
 
   def school_params

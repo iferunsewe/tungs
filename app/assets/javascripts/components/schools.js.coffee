@@ -10,6 +10,12 @@
     schools.push school
     @setState schools: schools
 
+  deleteSchool: (school) ->
+    schools = @state.schools.slice()
+    index = schools.indexOf school
+    schools.splice index, 1
+    @replaceState schools: schools
+
   render: ->
     React.DOM.div
       className: 'schools'
@@ -24,6 +30,7 @@
           React.DOM.tr null,
             React.DOM.th null, 'Name'
             React.DOM.th null, 'Address'
+            React.DOM.th null
         React.DOM.tbody null,
           for school in @state.schools
-            React.createElement School, key: school.id, school: school
+            React.createElement School, key: school.id, school: school, handleDeleteSchool: @deleteSchool
