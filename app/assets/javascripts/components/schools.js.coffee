@@ -14,6 +14,11 @@
     schools = React.addons.update(@state.schools, { $splice: [[index, 1]] })
     @replaceState schools: schools
 
+  updateSchool: (school, data) ->
+    index = @state.schools.indexOf school
+    schools = React.addons.update(@state.schools, {splice: [[index, 1, data]]})
+    @replaceState schools: schools
+
   render: ->
     React.DOM.div
       className: 'schools'
@@ -31,4 +36,4 @@
             React.DOM.th null
         React.DOM.tbody null,
           for school in @state.schools
-            React.createElement School, key: school.id, school: school, handleDeleteSchool: @deleteSchool
+            React.createElement School, key: school.id, school: school, handleDeleteSchool: @deleteSchool, handleEditSchool: @updateSchool

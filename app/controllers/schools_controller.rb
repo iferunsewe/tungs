@@ -13,6 +13,16 @@ class SchoolsController < ApplicationController
     end
   end
 
+  def update
+    @school = School.find(params[:id])
+
+    if @school.update(school_params)
+      render json: @school
+    else
+      render json: @school.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @school = School.find(params[:id])
     @school.destroy
