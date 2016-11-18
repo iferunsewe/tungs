@@ -16,7 +16,7 @@
 
   updateSchool: (school, data) ->
     index = @state.schools.indexOf school
-    schools = React.addons.update(@state.schools, {splice: [[index, 1, data]]})
+    schools = React.addons.update(@state.schools, { $splice: [[index, 1, data]] })
     @replaceState schools: schools
 
   render: ->
