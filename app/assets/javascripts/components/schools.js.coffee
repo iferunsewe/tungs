@@ -6,14 +6,12 @@
     schools: []
 
   addSchool: (school) ->
-    schools = @state.schools.slice()
-    schools.push school
+    schools = React.addons.update(@state.schools, { $push: [school] })
     @setState schools: schools
 
   deleteSchool: (school) ->
-    schools = @state.schools.slice()
-    index = schools.indexOf school
-    schools.splice index, 1
+    index = @state.schools.indexOf school
+    schools = React.addons.update(@state.schools, { $splice: [[index, 1]] })
     @replaceState schools: schools
 
   render: ->
