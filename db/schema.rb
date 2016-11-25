@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121194321) do
+ActiveRecord::Schema.define(version: 20161125111441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "films", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "release_date"
+    t.string   "director"
+    t.integer  "school_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["school_id"], name: "index_films_on_school_id", using: :btree
+    t.index ["user_id"], name: "index_films_on_user_id", using: :btree
+  end
+
+  create_table "films_schools", id: false, force: :cascade do |t|
+    t.integer "film_id",   null: false
+    t.integer "school_id", null: false
+    t.index ["film_id"], name: "index_films_schools_on_film_id", using: :btree
+    t.index ["school_id"], name: "index_films_schools_on_school_id", using: :btree
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "languages_schools", id: false, force: :cascade do |t|
+    t.integer "language_id", null: false
+    t.integer "school_id",   null: false
+    t.index ["language_id"], name: "index_languages_schools_on_language_id", using: :btree
+    t.index ["school_id"], name: "index_languages_schools_on_school_id", using: :btree
+  end
+
+  create_table "languages_users", id: false, force: :cascade do |t|
+    t.integer "language_id", null: false
+    t.integer "user_id",     null: false
+    t.index ["language_id"], name: "index_languages_users_on_language_id", using: :btree
+    t.index ["user_id"], name: "index_languages_users_on_user_id", using: :btree
+  end
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"

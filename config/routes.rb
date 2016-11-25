@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :films
   resources :languages
   devise_for :users
   resources :schools
