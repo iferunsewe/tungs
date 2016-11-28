@@ -12,7 +12,7 @@
 
   handleSubmit: (e) ->
     e.preventDefault()
-    $.post '', { school: @state }, (data) =>
+    $.post '/schools', { school: @state }, (data) =>
       @props.handleNewSchool data
       @setState @getInitialState()
     , 'JSON'
