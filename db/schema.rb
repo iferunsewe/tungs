@@ -76,10 +76,12 @@ ActiveRecord::Schema.define(version: 20161125111441) do
     t.string   "name"
     t.datetime "age"
     t.string   "role"
+    t.integer  "school_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["school_id"], name: "index_users_on_school_id", using: :btree
   end
 
 end

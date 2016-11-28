@@ -9,5 +9,5 @@
   %body
     .notice= notice
     .alert= alert
-    = link_to "LOG OUT", destroy_user_session_path, method: :delete
+    = link_to "LOG OUT", destroy_user_session_path, method: :delete if user_signed_in?
     = yield

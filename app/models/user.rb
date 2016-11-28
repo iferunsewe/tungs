@@ -5,6 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_and_belongs_to_many :languages
-  belongs_to :school
-  belongs_to :user
+  belongs_to :school, optional: true
 end
