@@ -20,7 +20,7 @@
     e.preventDefault()
     data =
       name: ReactDOM.findDOMNode(@refs.name).value
-      address: ReactDOM.findDOMNode(@refs.address).value
+      address: ReactDOM .findDOMNode(@refs.address).value
     $.ajax
       method: 'PUT'
       url: "/schools/#{ @props.school.id }"
