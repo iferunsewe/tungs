@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: :show
 
   def show
-
+    @school = @user.school
+    @films = helpers.films_for_user(@user)
   end
 
   private
