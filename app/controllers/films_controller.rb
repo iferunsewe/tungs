@@ -1,6 +1,7 @@
 class FilmsController < ApplicationController
-  def show
+  before_action :set_film, only: :show
 
+  def show
   end
 
   private
