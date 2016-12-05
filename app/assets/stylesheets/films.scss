@@ -13,10 +13,19 @@
     width: 60%;
     height: 70%;
     margin: 0 auto;
+    display: inline-block;
+    position: relative;
     #film-block{
       background-color: magenta;
       width: 100%;
       height: 100%;
     }
+  }
+  .film-translation-section{
+    width: 20%;
+    display: inline-block;
+    height: 70%;
+    background-color: #b0000c;
+    position: absolute;
   }
 }
