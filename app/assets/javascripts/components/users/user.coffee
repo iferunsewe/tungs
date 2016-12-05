@@ -1,3 +1,5 @@
+{ div, h2, h3, h4, hr, a, table, thead, tr, th, tbody, td } = React.DOM
+
 @User = React.createClass
   getInitialState: ->
     user: @props.user
@@ -10,36 +12,27 @@
     films: []
 
   render: ->
-    React.DOM.div
-      className: 'users'
-      React.DOM.h2
-        className: 'user'
-        "#{@state.user.name}"
-      React.DOM.h4
-        className: 'school'
-        console.log(@props)
-        "#{@state.school.name}"
-      React.DOM.hr null
-      React.DOM.div
-        className: 'films'
-        React.DOM.h3
-          className: 'title'
-          'Films'
-        React.DOM.hr null
-        React.DOM.table
-          className: 'table table-bordered'
-          React.DOM.thead null,
-            React.DOM.tr null,
-              React.DOM.th null, 'Name'
-              React.DOM.th null, 'Director'
-              React.DOM.th null, 'Description'
-              React.DOM.th null, 'Release Date'
-              React.DOM.th null
-          React.DOM.tbody null,
+    div className: 'users',
+      h2 className: 'user', "#{@state.user.name}"
+      h4 className: 'school', "#{@state.school.name}"
+      hr {}
+      div className: 'films',
+        h3 className: 'title', 'Films'
+        hr {}
+        table className: 'table table-bordered',
+          thead {},
+            tr {},
+              th {}, 'Name'
+              th {}, 'Director'
+              th {}, 'Description'
+              th {}, 'Release Date'
+              th {}
+          tbody {},
             for film in @state.films
-              React.DOM.tr null,
-                React.DOM.td null, film.name
-                React.DOM.td null, film.director
-                React.DOM.td null, film.description
-                React.DOM.td null, film.release_date
-                React.DOM.td null
+              tr {},
+                td {},
+                  a href: "/films/#{film.id}", film.name
+                td {}, film.director
+                td {}, film.description
+                td {}, film.release_date
+                td {}
