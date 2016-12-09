@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   .film-info-section{
+    width: 100%;
     h2.film-name{
       text-align: center;
     }
@@ -12,20 +13,34 @@
   .film-video-section{
     width: 60%;
     height: 70%;
-    margin: 0 auto;
+    margin-left: 11%;
     display: inline-block;
     position: relative;
-    #film-block{
-      background-color: magenta;
-      width: 100%;
-      height: 100%;
+    video{
+      width:100%;
     }
+    //#film-block{
+    //  background-color: magenta;
+    //  width: 100%;
+    //  height: 100%;
+    //}
   }
   .film-translation-section{
     width: 20%;
     display: inline-block;
     height: 70%;
-    background-color: #b0000c;
     position: absolute;
+    h4.title{
+      text-align: center;
+    }
+  }
+  .film-subtitles-section{
+    margin: 0 auto;
+    display: block;
+    width: 80%;
+    height: 10%;
+    h4.title{
+      text-align: center;
+    }
   }
 }
