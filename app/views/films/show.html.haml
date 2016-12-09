@@ -2,10 +2,25 @@
   .film-info-section
     %h2.film-name= @film.name
   .film-video-section
-    = video_tag 'les_obejts_wtf_2.mp4', type: 'video/mp4', controls: true, preload: 'metadata'
+    %figure#video-container
+      %video#video{src: asset_path('les_obejts_wtf_2.mp4'), type: 'video/mp4', preload: true}
+        %track#trackers{label: 'English', kind: 'subtitles', srclang: 'en', src: asset_path('les_obejts_wtf_2_en.vtt')}
+      #video-controls.controls{'data-state' => 'hidden'}
+        %button#playpause{type: 'button', 'data-state' => 'play'} Play/Pause
+        %button#stop{type: 'button', 'data-state' => 'stop'} Stop
+        .progress
+          %progress#progress{value: '0', min: '0'}
+            %span#progress-bar
+        %button#mute{type: 'button', 'data-state' => 'mute'} Mute/Unmute
+        %button#volinc{type: 'button', 'data-state' => 'volup'} Vol+
+        %button#voldec{type: 'button', 'data-state' => 'voldown'} Vol-
+        %button#fullscreen{type: 'button', 'data-state' => 'go-fullscreen'} Fullscreen
+        %button#subtitles{type: 'button', 'data-state' => 'subtitles'} CC
   .film-translation-section
     %h4.title Translate
     %hr
+    .content
   .film-subtitles-section
     %h4.title Subtitles
     %hr
+    .content
