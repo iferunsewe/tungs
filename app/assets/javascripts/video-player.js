@@ -1,3 +1,33 @@
+volume = {};
+// Check the volume
+volume.check = function(dir){
+    var checkVolume = function (dir) {
+        if (dir) {
+            var currentVolume = Math.floor(video.volume * 10) / 10;
+            if (dir === '+') {
+                if (currentVolume < 1) video.volume += 0.1;
+            }
+            else if (dir === '-') {
+                if (currentVolume > 0) video.volume -= 0.1;
+            }
+            // If the volume has been turned off, also set it as muted
+            // Note: can only do this with the custom control set as when the 'volumechange' event is raised, there is no way to know if it was via a volume or a mute change
+            if (currentVolume <= 0) video.muted = true;
+            else video.muted = false;
+        }
+        changeButtonState('mute');
+    };
+};
+// Change the volume
+volume.alter = function(){
+    volume.check(dir);
+};
+
+fullscreen = {};
+// Check if the browser supports the Fullscreen API
+var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+
+
 $(document).ready(function () {
     'use strict';
 
@@ -9,7 +39,7 @@ $(document).ready(function () {
         var videoContainer = document.getElementById('video-container');
         var video = document.getElementById('video');
         var videoControls = document.getElementById('video-controls');
-        var translationContainer = $("#translation-container");
+        var translationContainer = $(".film-translation-section .content");
 
         // Hide the default controls
         video.controls = false;
@@ -34,34 +64,34 @@ $(document).ready(function () {
         if (!supportsProgress) progress.setAttribute('data-state', 'fake');
 
         // Check if the browser supports the Fullscreen API
-        var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+        //var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
         // If the browser doesn't support the Fulscreen API then hide the fullscreen button
         if (!fullScreenEnabled) {
             fullscreen.style.display = 'none';
         }
 
         // Check the volume
-        var checkVolume = function (dir) {
-            if (dir) {
-                var currentVolume = Math.floor(video.volume * 10) / 10;
-                if (dir === '+') {
-                    if (currentVolume < 1) video.volume += 0.1;
-                }
-                else if (dir === '-') {
-                    if (currentVolume > 0) video.volume -= 0.1;
-                }
-                // If the volume has been turned off, also set it as muted
-                // Note: can only do this with the custom control set as when the 'volumechange' event is raised, there is no way to know if it was via a volume or a mute change
-                if (currentVolume <= 0) video.muted = true;
-                else video.muted = false;
-            }
-            changeButtonState('mute');
-        };
+        //var checkVolume = function (dir) {
+        //    if (dir) {
+        //        var currentVolume = Math.floor(video.volume * 10) / 10;
+        //        if (dir === '+') {
+        //            if (currentVolume < 1) video.volume += 0.1;
+        //        }
+        //        else if (dir === '-') {
+        //            if (currentVolume > 0) video.volume -= 0.1;
+        //        }
+        //        // If the volume has been turned off, also set it as muted
+        //        // Note: can only do this with the custom control set as when the 'volumechange' event is raised, there is no way to know if it was via a volume or a mute change
+        //        if (currentVolume <= 0) video.muted = true;
+        //        else video.muted = false;
+        //    }
+        //    changeButtonState('mute');
+        //};
 
         // Change the volume
-        var alterVolume = function (dir) {
-            checkVolume(dir);
-        };
+        //var alterVolume = function (dir) {
+        //    volume.check(dir);
+        //};
 
         // Set the video container's fullscreen state
         var setFullscreenData = function (state) {
@@ -136,7 +166,7 @@ $(document).ready(function () {
                 changeButtonState('playpause');
             }, false);
             video.addEventListener('volumechange', function () {
-                checkVolume();
+                volume.check();
             }, false);
 
             // Add events for all buttons
@@ -214,10 +244,10 @@ $(document).ready(function () {
                 changeButtonState('mute');
             });
             volinc.addEventListener('click', function (e) {
-                alterVolume('+');
+                volume.alter('+');
             });
             voldec.addEventListener('click', function (e) {
-                alterVolume('-');
+                volume.alter('-');
             });
             fullscreen.addEventListener('click', function (e) {
                 handleFullscreen();
@@ -252,7 +282,7 @@ $(document).ready(function () {
                 setFullscreenData(!!document.msFullscreenElement);
             });
 
-            var subtitlesContainer = $("#subtitles-container");
+            var subtitlesContainer = $("#film-container .film-subtitles-section .content");
 
 
             var cueText = '';
