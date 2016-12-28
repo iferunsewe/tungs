@@ -15,7 +15,7 @@ figure{
     position:absolute;
     height:10%;
     width: 100%;
-    background:transparent;
+    background:rgba(255, 255, 255, 0.53);
     * {
       float:left;
       height:100%;
@@ -40,7 +40,7 @@ figure{
       background:transparent;
       background-size:contain;
       background-repeat:no-repeat;
-      :hover, :focus{
+      :hover, :focus, [data-state="active"]{
         opacity:0.5;
       }
 
@@ -72,10 +72,107 @@ figure{
     [data-state="cancel-fullscreen"] {
       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpFNDZDNDg2MEEzMjFFMjExOTBEQkQ4OEMzRUMyQjhERCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCM0M2OUNCOUE0MDcxMUUyQjgwQkYzQzhCMDZBRTU1NCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCMzlFNDkzMUE0MDcxMUUyQjgwQkYzQzhCMDZBRTU1NCIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQzQ0QwNDBBMDJBNEUyMTFCOTZEQzYyRDgyRUVBOUZDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkU0NkM0ODYwQTMyMUUyMTE5MERCRDg4QzNFQzJCOEREIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+1VELOwAAAadJREFUeNrs2EtOwzAQBuAEOAEIKsQluAAbGqSGHRIrEKveoQEWNOF0SFyGZ6GkwowlWwpm7IwdT8kiI/2LWk39yY4faiqESPpcG0nPq/fARE5xM0btrIGw7fQ4gJeQJ8gRI24MeYac+wIvICv5fcgrE1Li3lUftUZSgAeQhXpQMCGbOJ03yC51BM8gSyYkhpN95b7voA+yQtpukLbMgjsNWSRUZKXa/2wQBjJzjVwosA1ZNdowoMwtFRcKtCHNzzagsDybk/ZlItCGpAJJuK5AjVx1ANYuHAb0PYsPIZsdtpgt9RvRzuIEWa1dp1hYtqBOU3zf0qEvUK/uVmBqotI0/ffb1XBhHYBIlQyL5Dr2NlNGBBZcJ0kZAVhwniQP6qgLrS/II9dJMoF8RhhBee06jj3FGK72ANYIchwLiOFkByeQOQFYqCv9koL0BeYOnK65AzgzfgtDZqFACk7XHdI2Q9pakVTgxAPnW7lruinAfcgHE86FfIHsUUdwCvlmwmFIubde+b6DU/V3BAeuiVxoXMgqHq3hwjLyulEP98EBOAB/148AAwA7RI/R8UopbwAAAABJRU5ErkJggg==');
     }
-    .progress{
-      height: 50%;
+    [data-state="subtitles"]{
+      height: 100%;
+      text-indent: 0;
+      font-size: 22px;
+      font-weight: bold;
+      -moz-border-radius:2px;
+      -webkit-border-radius:2px;
+      border-radius:2px;
+    }
+    progress{
+      height: 10%;
+      margin-bottom: 0.5%;
+      border-radius: 1px;
+      -moz-border-radius:1px;
+      -webkit-border-radius:1px;
+      color:#0095dd;
       cursor:pointer;
-      width: 65%;
+      width: 100%;
+      [data-state="fake"]{
+        background:#e6e6e6;
+      }
+      span{
+        width:0%;
+        height:100%;
+        display:inline-block;
+        background-color:#2a84cd;
+      }
+      ::-moz-progress-bar, ::-webkit-progress-value {
+        background-color:#0095dd;
+      }
     }
   }
+  .subtitles-menu{
+    display:none;
+    position:absolute;
+    bottom:14.8%;
+    right:20px;
+    background:#666;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    width:100px;
+    padding:10px;
+    li{
+      padding:0;
+      text-align:center;
+      button{
+        border:none;
+        background:#000;
+        color:#fff;
+        cursor:pointer;
+        width:90%;
+        padding:2px 5px;
+        -moz-border-radius:2px;
+        -webkit-border-radius:2px;
+        border-radius:2px;
+      }
+    }
+  }
+}
+
+/* fullscreen */
+html:-ms-fullscreen {
+  width:100%;
+}
+:-webkit-full-screen {
+  background-color:transparent;
+}
+video:-webkit-full-screen + .controls {
+  background:#ccc; /* required for Chrome which doesn't heed the transparent value set above */
+}
+video:-webkit-full-screen + .controls progress {
+  margin-top:0.5rem;
+}
+
+///* hide controls on fullscreen with WebKit */
+figure[data-fullscreen=true] video::-webkit-media-controls {
+  display:none !important;
+}
+figure[data-fullscreen=true] {
+  max-width:100%;
+  width:100%;
+  margin:0;
+  padding:0;
+  max-height:100%;
+}
+figure[data-fullscreen=true] video {
+  height:auto;
+}
+figure[data-fullscreen=true] figcaption {
+  display:none;
+}
+figure[data-fullscreen=true] .controls {
+  position:absolute;
+  bottom:2%;
+  width:100%;
+  z-index:2147483647;
+}
+figure[data-fullscreen=true] .controls li {
+  width:5%;
+}
+figure[data-fullscreen=true] .controls .progress {
+  width:68%;
 }

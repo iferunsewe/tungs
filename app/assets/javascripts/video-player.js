@@ -126,19 +126,27 @@ playback.pause = function(){
 };
 // If the browser doesn't support the progress element, set its state for some different styling
 playback.fakeProgress = function(){
-    var fullscreenButton = document.getElementById('fullscreen');
-    if (!fullScreenEnabled) {
-        fullscreenButton.style.display = 'none';
-    }
+    var videoProgress = document.getElementById('progress');
+    var supportsProgress = (document.createElement('progress').max !== undefined);
+    if (!supportsProgress) videoProgress.setAttribute('data-state', 'fake');
 };
 
 
 
 fullscreen = {};
+
 // Check if the browser supports the Fullscreen API
-var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+fullscreen.enabled = function(){
+    var fullscreenButton = document.getElementById('fullscreen');
+    var enabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
+    if (!enabled) {
+        fullscreenButton.style.display = 'none';
+    }
+};
 // Set the video container's fullscreen state
 fullscreen.setData = function(state){
+    var videoContainer = document.getElementById('video-container');
+    var fullscreenButton = document.getElementById('fullscreen');
     videoContainer.setAttribute('data-fullscreen', !!state);
     // Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
     fullscreenButton.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
@@ -150,6 +158,7 @@ fullscreen.isOn = function(){
 // Fullscreen
 fullscreen.handle = function(){
     var videoContainer = document.getElementById('video-container');
+    // Fullscreen
     // If fullscreen mode is active...
     if (fullscreen.isOn()) {
         // ...exit fullscreen mode
@@ -303,6 +312,8 @@ $(document).ready(function () {
 
         playback.fakeProgress();
 
+        fullscreen.enabled();
+
         // Only add the events if addEventListener is supported (IE8 and less don't support it, but that will use Flash anyway)
         if (document.addEventListener) {
 
@@ -374,6 +385,7 @@ $(document).ready(function () {
             volume.increase();
             volume.decrease();
             fullscreen.enter();
+
             playback.updateProgressBar();
             playback.progressBarClick();
             fullscreen.listenForChange();

@@ -6,11 +6,10 @@
       %video#video{src: asset_path('les_obejts_wtf_2.mp4'), type: 'video/mp4', preload: true}
         %track#trackers{label: 'English', kind: 'subtitles', srclang: 'en', src: asset_path('les_obejts_wtf_2_en.vtt')}
       #video-controls.controls{'data-state' => 'hidden'}
+        %progress#progress{value: '0', min: '0'}
+          %span#progress-bar
         %button#playpause{type: 'button', 'data-state' => 'play'}
         %button#stop{type: 'button', 'data-state' => 'stop'}
-        .progress
-          %progress#progress{value: '0', min: '0'}
-            %span#progress-bar
         %button#mute{type: 'button', 'data-state' => 'mute'}
         %button#volinc{type: 'button', 'data-state' => 'volup'}
         %button#voldec{type: 'button', 'data-state' => 'voldown'}
