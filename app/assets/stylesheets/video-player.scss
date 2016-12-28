@@ -8,7 +8,7 @@ figure{
     position: absolute;
   }
   #video-controls{
-    padding:0;
+    padding-bottom: 0.5%;
     margin:0;
     overflow:hidden;
     bottom: 10.3%;;
@@ -18,7 +18,7 @@ figure{
     background:rgba(255, 255, 255, 0.53);
     * {
       float:left;
-      height:100%;
+      height:80%;
       display:block;
     }
     *:first-child{
@@ -75,7 +75,7 @@ figure{
     [data-state="subtitles"]{
       height: 100%;
       text-indent: 0;
-      font-size: 22px;
+      font-size: 100%;
       font-weight: bold;
       -moz-border-radius:2px;
       -webkit-border-radius:2px;
@@ -143,9 +143,6 @@ html:-ms-fullscreen {
 video:-webkit-full-screen + .controls {
   background:#ccc; /* required for Chrome which doesn't heed the transparent value set above */
 }
-video:-webkit-full-screen + .controls progress {
-  margin-top:0.5rem;
-}
 
 ///* hide controls on fullscreen with WebKit */
 figure[data-fullscreen=true] video::-webkit-media-controls {
@@ -164,15 +161,24 @@ figure[data-fullscreen=true] video {
 figure[data-fullscreen=true] figcaption {
   display:none;
 }
-figure[data-fullscreen=true] .controls {
+figure[data-fullscreen=true] #video-controls {
   position:absolute;
-  bottom:2%;
-  width:100%;
+  bottom:0 !important;
   z-index:2147483647;
+  height: 5% !important;
+  button{
+    width: 2% !important;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+  }
 }
-figure[data-fullscreen=true] .controls li {
+
+figure[data-fullscreen=true] .subtitles-menu {
+  position:absolute;
+  z-index:2147483647;
+  bottom: 5%;
+}
+
+figure[data-fullscreen=true] #video-controls li {
   width:5%;
-}
-figure[data-fullscreen=true] .controls .progress {
-  width:68%;
 }
