@@ -214,32 +214,47 @@ subtitles = {};
 // Turn off all subtitles
 subtitles.off = function(){
     for (var i = 0; i < video.textTracks.length; i++) {
-        video.textTracks[i].mode = 'showing';
+        video.textTracks[i].mode = 'hidden';
     }
 };
+
+subtitles.activeTrack = function(){
+    var activeButton = $("button.language-button[data-state='active']")[0];
+    if(activeButton != undefined){
+        for (var i = 0; i < video.textTracks.length; i++) {
+            if (video.textTracks[i].language == activeButton.lang){
+                return video.textTracks[i]
+            }
+        }
+    }
+};
+
+subtitles.modifyTrack = function(textTrack){
+    var cueText = '';
+    var modText = '';
+    var subtitlesContainer = $(".film-subtitles-section .content");
+    var cue = textTrack.activeCues[0]; // assuming there is only one active cue
+    // do something
+    if (cue !== undefined) {
+        cueText = cue.text.split(' ');
+        console.log("STRIPPED STRING " + cueText);
+        for (var i = 0; i < cueText.length; i++) {
+            modText += "<span>" + cueText[i] + "</span>" + " ";
+        }
+        console.log("MODIFIED TEXT " + modText);
+        subtitlesContainer.html('').append(modText);
+    }
+};
+
 // Split the track into html
 subtitles.splitTrack = function(){
-    var cueText = '';
-    var trackers = document.getElementById('trackers');
-    var subtitlesContainer = $(".film-subtitles-section .content");
-    trackers.addEventListener('load', function () {
-        var textTrack = video.textTracks[0];
-        textTrack.oncuechange = function () {
-            // "this" is a textTrack
-            var cue = this.activeCues[0]; // assuming there is only one active cue
-            var modText = '';
-            // do something
-            if (cue !== undefined) {
-                cueText = cue.text.split(' ');
-                console.log("STRIPPED STRING " + cueText);
-                for (var i = 0; i < cueText.length; i++) {
-                    modText += "<span>" + cueText[i] + "</span>" + " ";
-                }
-                console.log("MODIFIED TEXT " + modText);
-                subtitlesContainer.html('').append(modText);
-            }
-        };
-    });
+    var textTrack = subtitles.activeTrack();
+    // Needed to display the first cue
+    subtitles.modifyTrack(textTrack)
+    textTrack.oncuechange = function () {
+        // "this" is a textTrack
+        subtitles.modifyTrack(textTrack);
+    };
 };
 // Translate the selected subtitles
 subtitles.translate = function(){
@@ -328,13 +343,16 @@ $(document).ready(function () {
 
             subtitles.off();
 
+            var subtitlesContainer = $(".film-subtitles-section .content");
+
+
             // Creates and returns a menu item for the subtitles language menu
             var subtitleMenuButtons = [];
             var createMenuItem = function (id, lang, label) {
                 var listItem = document.createElement('li');
                 var button = listItem.appendChild(document.createElement('button'));
                 button.setAttribute('id', id);
-                button.className = 'subtitles-button';
+                button.className = 'language-button';
                 if (lang.length > 0) button.setAttribute('lang', lang);
                 button.value = label;
                 button.setAttribute('data-state', 'inactive');
@@ -349,18 +367,18 @@ $(document).ready(function () {
                     for (var i = 0; i < video.textTracks.length; i++) {
                         // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
                         if (video.textTracks[i].language == lang) {
-                            video.textTracks[i].mode = 'showing';
                             this.setAttribute('data-state', 'active');
                         }
                         else {
                             video.textTracks[i].mode = 'hidden';
                         }
                     }
+                    subtitles.splitTrack();
                     subtitlesMenu.style.display = 'none';
                 });
                 subtitleMenuButtons.push(button);
                 return listItem;
-            }
+            };
             // Go through each one and build a small clickable list, and when each item is clicked on, set its mode to be "showing" and the others to be "hidden"
             var subtitlesMenu;
             if (video.textTracks) {
@@ -389,8 +407,6 @@ $(document).ready(function () {
             playback.updateProgressBar();
             playback.progressBarClick();
             fullscreen.listenForChange();
-
-            subtitles.splitTrack();
 
             subtitles.translate();
         }

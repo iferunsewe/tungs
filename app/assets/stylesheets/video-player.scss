@@ -133,7 +133,7 @@ figure{
   }
 }
 
-/* fullscreen */
+/* styling for fullscreen */
 html:-ms-fullscreen {
   width:100%;
 }
@@ -144,8 +144,6 @@ video:-webkit-full-screen + .controls {
   background:#ccc; /* required for Chrome which doesn't heed the transparent value set above */
 }
 
-///* hide controls on fullscreen with WebKit */
-//
 figure[data-fullscreen=true] {
   max-width:100%;
   width:100%;
