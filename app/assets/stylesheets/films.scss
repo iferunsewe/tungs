@@ -12,31 +12,18 @@
   }
   .film-video-section{
     width: 60%;
-    height: 70%;
-    display: inline-block;
+    height: 63%;
     position: relative;
-  }
-  .film-translation-section{
-    width: 20%;
-    display: inline-block;
-    height: 70%;
-    position: absolute;
-    h4.title{
-      text-align: center;
-    }
-  }
-  .film-subtitles-section{
     margin: 0 auto;
-    display: block;
-    width: 80%;
-    height: 50%;
-    h4.title{
-      height: 10%;
-      text-align: center;
-    }
-    .content{
-      height: 90%;
-      color: black;
+    #translation-container{
+      width: 20%;
+      display: inline-block;
+      height: 70%;
+      position: absolute;
+      h4.title{
+        text-align: center;
+      }
     }
   }
+
 }

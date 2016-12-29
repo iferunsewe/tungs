@@ -6,6 +6,7 @@
       %video#video{src: asset_path('les_obejts_wtf_2.mp4'), type: 'video/mp4', preload: true}
         %track#trackers{label: 'English', kind: 'subtitles', srclang: 'en', src: asset_path('les_obejts_wtf_2_en.vtt')}
         %track{label: 'French', kind: 'subtitles', srclang: 'fr', src: asset_path('les_obejts_wtf_2_fr.vtt')}
+      #subtitles-container
       #video-controls.controls{'data-state' => 'hidden'}
         %progress#progress{value: '0', min: '0'}
           %span#progress-bar
@@ -16,11 +17,7 @@
         %button#voldec{type: 'button', 'data-state' => 'voldown'}
         %button#fullscreen{type: 'button', 'data-state' => 'go-fullscreen'}
         %button#subtitles{type: 'button', 'data-state' => 'subtitles'} CC
-  .film-translation-section
-    %h4.title Translate
-    %hr
-    .content
-  .film-subtitles-section
-    %h4.title Subtitles
-    %hr
-    .content
+    #translation-container
+      %h4.title Translate
+      %hr
+      .content

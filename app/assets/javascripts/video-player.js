@@ -226,7 +226,7 @@ subtitles.activeTrack = function(){
 subtitles.modifyTrack = function(textTrack){
     var cueText = '';
     var modText = '';
-    var subtitlesContainer = $(".film-subtitles-section .content");
+    var subtitlesContainer = $("#subtitles-container");
     var cue = textTrack.activeCues[0]; // assuming there is only one active cue
     // do something
     if (cue !== undefined) {
@@ -250,8 +250,8 @@ subtitles.splitTrack = function(){
 };
 // Translate the selected subtitles
 subtitles.translate = function(){
-    var subtitlesContainer = $(".film-subtitles-section .content");
-    var translationContainer = $(".film-translation-section .content");
+    var subtitlesContainer = $("#subtitles-container")
+    var translationContainer = $("#translation-container");
     subtitlesContainer.click(function (e) {
         translationContainer.css('background-color', 'yellow');
         console.log(e.target);
@@ -365,7 +365,7 @@ $(document).ready(function () {
                     if(this.id != 'subtitles-off'){
                         subtitles.splitTrack();
                     }else{
-                        var subtitlesContainer = $(".film-subtitles-section .content");
+                        var subtitlesContainer = $("#subtitles-container");
                         subtitlesContainer.hide();
                     }
 

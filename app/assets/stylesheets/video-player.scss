@@ -1,17 +1,35 @@
 figure{
   position: relative;
-  width: 100%;
+  width: 99%;
   height: 100%;
+  text-align: center;
+  display: inline-block;
   video {
     width: 100%;
-    height: 90%;
-    position: absolute;
+    height: 100%;
+  }
+  #subtitles-container{
+    top: -95%;
+    padding: 0.5%;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    color:  rgba(0, 68, 1, 0.7);
+    position: relative;
+    margin: 0 auto;
+    max-width: 40%;
+    background-color: transparent;
+    font-weight: bold;
+    text-shadow: white 2px 2px 12px;
+    span{
+      cursor: pointer;
+    }
   }
   #video-controls{
     padding-bottom: 0.5%;
     margin:0;
     overflow:hidden;
-    bottom: 10.3%;;
+    bottom: 0;
     position:absolute;
     height:10%;
     width: 100%;
