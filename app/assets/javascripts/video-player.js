@@ -362,7 +362,13 @@ $(document).ready(function () {
                             video.textTracks[i].mode = 'hidden';
                         }
                     }
-                    subtitles.splitTrack();
+                    if(this.id != 'subtitles-off'){
+                        subtitles.splitTrack();
+                    }else{
+                        var subtitlesContainer = $(".film-subtitles-section .content");
+                        subtitlesContainer.hide();
+                    }
+
                     subtitlesMenu.style.display = 'none';
                 });
                 subtitleMenuButtons.push(button);
