@@ -39,17 +39,11 @@ subtitles.splitTrack = function(){
 };
 // Translate the selected subtitles
 subtitles.translate = function(){
-    var subtitlesContainer = $("#subtitles-container")
-    var translationContainer = $("#translation-container");
+    var subtitlesContainer = $("#subtitles-container");
+    var translationContent = $("#translation-container .content");
     subtitlesContainer.click(function (e) {
-        translationContainer.css('background-color', 'yellow');
-        console.log(e.target);
         var targetedText = e.target.textContent;
-        console.log("TRANSLATING " + targetedText);
-
         var requestStr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160811T192805Z.efeabd9b6a63be74.83bd8ebdac3a740ad49e31cb93eea218d37a91a8&text=" + targetedText + "&lang=en-fr";
-        console.log("REQUEST STRING " + requestStr);
-
         var translatedString = '';
         $.ajax({
             url: requestStr,
@@ -57,11 +51,7 @@ subtitles.translate = function(){
             dataType: 'jsonp',
             success: function (data) {
                 translatedString = data.text[0];
-                console.log(translatedString);
-                translationContainer.css('color', 'white');
-                translationContainer.html('').append("<p>" + translatedString + "</p>");
-                if (video.paused || video.ended) video.play();
-                else video.pause();
+                translationContent.html('').append("<p><b>" + targetedText + "</b> is translated as <b>" + translatedString + "</b></p>");
             },
             error: function (data) {
                 var response = JSON.parse(data.responseText);
@@ -133,15 +123,24 @@ subtitles.createMenuItem = function (id, lang, label) {
     return listItem;
 };
 
+translation = {};
+
+translation.hideContainer = function(){
+    var translationContainer = $("#translation-container");
+    translationContainer.hide();
+};
+
+
+
 $(document).ready(function () {
     'use strict';
-
     var supportsVideo = !!document.createElement('video').canPlayType;
-
     if (supportsVideo) {
+        //translation.hideContainer();
         if (document.addEventListener) {
             subtitles.off();
             subtitles.createMenu();
             subtitles.translate();
         }
-    }});
+    }
+});
