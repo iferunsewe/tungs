@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128213038) do
+ActiveRecord::Schema.define(version: 20161229203541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(version: 20161128213038) do
     t.integer "user_id",     null: false
     t.index ["language_id"], name: "index_languages_users_on_language_id", using: :btree
     t.index ["user_id"], name: "index_languages_users_on_user_id", using: :btree
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.string   "text"
+    t.string   "translation"
+    t.integer  "user_id"
+    t.integer  "film_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["film_id"], name: "index_memories_on_film_id", using: :btree
+    t.index ["language_id"], name: "index_memories_on_language_id", using: :btree
+    t.index ["user_id"], name: "index_memories_on_user_id", using: :btree
   end
 
   create_table "schools", force: :cascade do |t|

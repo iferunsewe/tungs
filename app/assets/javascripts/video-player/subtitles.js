@@ -130,8 +130,6 @@ translation.hideContainer = function(){
     translationContainer.hide();
 };
 
-
-
 $(document).ready(function () {
     'use strict';
     var supportsVideo = !!document.createElement('video').canPlayType;
