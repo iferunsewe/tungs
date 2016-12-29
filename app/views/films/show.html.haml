@@ -21,4 +21,4 @@
       %h4.title Translate
       %hr
       .content
-      %button.memory-button.btn.btn-info Add to Memory
+      %button.memory-button.btn.btn-info{type: 'button', 'data-user-id' => current_user.id, 'data-film-id' => @film.id } Add to Memory

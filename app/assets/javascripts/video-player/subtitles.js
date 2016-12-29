@@ -51,7 +51,7 @@ subtitles.translate = function(){
             dataType: 'jsonp',
             success: function (data) {
                 translatedString = data.text[0];
-                translationContent.html('').append("<p><b>" + targetedText + "</b> is translated as <b>" + translatedString + "</b></p>");
+                translationContent.html('').append("<p><span id='original-text'><b>" + targetedText + "</b></span> is translated as <b><span id='translated-text'>" + translatedString + "</b></span></p>");
                 translation.toggleMemoryButtonIfHidden();
             },
             error: function (data) {
@@ -141,6 +141,19 @@ translation.toggleMemoryButtonIfHidden=  function(){
     if (memoryButton.is(":hidden")){
         memoryButton.toggle();
     }
+};
+
+translation.addToMemory = function(){
+    var memoryButton = $('.memory-button');
+    memoryButton.click(function(){
+        var originalText = $('#original-text')
+        var translatedText = $('#translatedText')
+        var userId = $(this).attr('data-user-id')
+        var filmId = $(this).attr('data-film-id')
+
+
+        }
+    )
 };
 
 $(document).ready(function () {
