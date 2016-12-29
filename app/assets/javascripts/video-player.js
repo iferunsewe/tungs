@@ -220,13 +220,7 @@ subtitles.off = function(){
 
 subtitles.activeTrack = function(){
     var activeButton = $("button.language-button[data-state='active']")[0];
-    if(activeButton != undefined){
-        for (var i = 0; i < video.textTracks.length; i++) {
-            if (video.textTracks[i].language == activeButton.lang){
-                return video.textTracks[i]
-            }
-        }
-    }
+    return video.textTracks[activeButton.id];
 };
 
 subtitles.modifyTrack = function(textTrack){
@@ -237,11 +231,9 @@ subtitles.modifyTrack = function(textTrack){
     // do something
     if (cue !== undefined) {
         cueText = cue.text.split(' ');
-        console.log("STRIPPED STRING " + cueText);
         for (var i = 0; i < cueText.length; i++) {
             modText += "<span>" + cueText[i] + "</span>" + " ";
         }
-        console.log("MODIFIED TEXT " + modText);
         subtitlesContainer.html('').append(modText);
     }
 };
@@ -250,9 +242,9 @@ subtitles.modifyTrack = function(textTrack){
 subtitles.splitTrack = function(){
     var textTrack = subtitles.activeTrack();
     // Needed to display the first cue
-    subtitles.modifyTrack(textTrack)
+    subtitles.modifyTrack(textTrack);
     textTrack.oncuechange = function () {
-        // "this" is a textTrack
+        var textTrack = subtitles.activeTrack();
         subtitles.modifyTrack(textTrack);
     };
 };
@@ -343,9 +335,6 @@ $(document).ready(function () {
 
             subtitles.off();
 
-            var subtitlesContainer = $(".film-subtitles-section .content");
-
-
             // Creates and returns a menu item for the subtitles language menu
             var subtitleMenuButtons = [];
             var createMenuItem = function (id, lang, label) {
@@ -387,7 +376,7 @@ $(document).ready(function () {
                 subtitlesMenu.className = 'subtitles-menu';
                 subtitlesMenu.appendChild(createMenuItem('subtitles-off', '', 'Off'));
                 for (var i = 0; i < video.textTracks.length; i++) {
-                    subtitlesMenu.appendChild(createMenuItem('subtitles-' + video.textTracks[i].language, video.textTracks[i].language, video.textTracks[i].label));
+                    subtitlesMenu.appendChild(createMenuItem(i, video.textTracks[i].language, video.textTracks[i].label));
                 }
                 videoContainer.appendChild(subtitlesMenu);
             }
