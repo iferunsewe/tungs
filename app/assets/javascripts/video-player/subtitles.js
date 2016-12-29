@@ -52,6 +52,7 @@ subtitles.translate = function(){
             success: function (data) {
                 translatedString = data.text[0];
                 translationContent.html('').append("<p><b>" + targetedText + "</b> is translated as <b>" + translatedString + "</b></p>");
+                translation.toggleMemoryButtonIfHidden();
             },
             error: function (data) {
                 var response = JSON.parse(data.responseText);
@@ -130,8 +131,21 @@ translation.hideContainer = function(){
     translationContainer.hide();
 };
 
+translation.toggleMemoryButton = function(){
+    var memoryButton = $('.memory-button');
+    memoryButton.toggle();
+};
+
+translation.toggleMemoryButtonIfHidden=  function(){
+    var memoryButton = $('.memory-button');
+    if (memoryButton.is(":hidden")){
+        memoryButton.toggle();
+    }
+};
+
 $(document).ready(function () {
     'use strict';
+    translation.toggleMemoryButton();
     var supportsVideo = !!document.createElement('video').canPlayType;
     if (supportsVideo) {
         //translation.hideContainer();
