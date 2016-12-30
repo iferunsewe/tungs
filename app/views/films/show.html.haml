@@ -3,9 +3,9 @@
     %h2.film-name= @film.name
   .film-video-section
     %figure#video-container
-      %video#video{src: asset_path('les_obejts_wtf_2.mp4'), type: 'video/mp4', preload: true}
-        %track#trackers{label: 'English', kind: 'subtitles', srclang: 'en', src: asset_path('les_obejts_wtf_2_en.vtt')}
-        %track{label: 'French', kind: 'subtitles', srclang: 'fr', src: asset_path('les_obejts_wtf_2_fr.vtt')}
+      %video#video{src: asset_path(@film.source), type: 'video/mp4', preload: true}
+        - @film.subtitles.each do |subtitle|
+          %track{label: subtitle.language.name, kind: 'subtitles', srclang:subtitle.language.language_code, src: asset_path(subtitle.source), id: subtitle.language.id}
       #subtitles-container
       #video-controls.controls{'data-state' => 'hidden'}
         %progress#progress{value: '0', min: '0'}

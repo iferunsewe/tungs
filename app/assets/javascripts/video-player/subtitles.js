@@ -9,7 +9,7 @@ subtitles.off = function(){
 
 subtitles.activeTrack = function(){
     var activeButton = $("button.language-button[data-state='active']")[0];
-    return video.textTracks[activeButton.id];
+    return video.textTracks[activeButton.id - 1];
 };
 
 subtitles.modifyTrack = function(textTrack){
@@ -71,7 +71,7 @@ subtitles.createMenu = function(){
         subtitlesMenu.className = 'subtitles-menu';
         subtitlesMenu.appendChild(subtitles.createMenuItem('subtitles-off', '', 'Off'));
         for (var i = 0; i < video.textTracks.length; i++) {
-            subtitlesMenu.appendChild(subtitles.createMenuItem(i, video.textTracks[i].language, video.textTracks[i].label));
+            subtitlesMenu.appendChild(subtitles.createMenuItem(video.textTracks[i].id, video.textTracks[i].language, video.textTracks[i].label));
         }
         videoContainer.appendChild(subtitlesMenu);
     }
@@ -131,9 +131,9 @@ translation.hideContainer = function(){
     translationContainer.hide();
 };
 
-translation.toggleMemoryButton = function(){
+translation.hideMemoryButton = function(){
     var memoryButton = $('.memory-button');
-    memoryButton.toggle();
+    memoryButton.hide();
 };
 
 translation.toggleMemoryButtonIfHidden=  function(){
@@ -145,20 +145,41 @@ translation.toggleMemoryButtonIfHidden=  function(){
 
 translation.addToMemory = function(){
     var memoryButton = $('.memory-button');
-    memoryButton.click(function(){
-        var originalText = $('#original-text')
-        var translatedText = $('#translatedText')
-        var userId = $(this).attr('data-user-id')
-        var filmId = $(this).attr('data-film-id')
+    memoryButton.click(function() {
+        var originalText = $('#original-text').text();
+        var translatedText = $('#translated-text').text();
+        var userId = parseInt($(this).attr('data-user-id'));
+        var filmId = parseInt($(this).attr('data-film-id'));
+        var languageId = parseInt(subtitles.activeTrack().id);
+        $.ajax({
+            type: "POST",
+            url: "/memories",
+            data: {
+                memory: {
+                    text: originalText,
+                    translation: translatedText,
+                    user_id: userId,
+                    film_id: filmId,
+                    language_id: languageId
+                }
+            },
+            success: function (data) {
+                var translationContent = $("#translation-container .content");
+                translationContent.html('').append("<p><span>Translation remembered</p></span>")
+                translation.hideMemoryButton();
+            },
+            error: function (data) {
+                var response = data.responseText;
+                console.log(response.message)
+            }
+        });
 
-
-        }
-    )
+    })
 };
 
 $(document).ready(function () {
     'use strict';
-    translation.toggleMemoryButton();
+    translation.hideMemoryButton();
     var supportsVideo = !!document.createElement('video').canPlayType;
     if (supportsVideo) {
         //translation.hideContainer();
@@ -166,6 +187,7 @@ $(document).ready(function () {
             subtitles.off();
             subtitles.createMenu();
             subtitles.translate();
+            translation.addToMemory();
         }
     }
 });

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :subtitles
   resources :memories
   devise_for :users
   resources :films

@@ -1,5 +1,8 @@
 class Memory < ApplicationRecord
-  validates [:text, :translation], presence: true
+  validates :text, presence: true
+  validates :translation, presence: true
 
-  belongs_to :user, :film, :language
+  belongs_to :user
+  belongs_to :film
+  belongs_to :language
 end

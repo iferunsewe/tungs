@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229203541) do
+ActiveRecord::Schema.define(version: 20161229230251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161229203541) do
     t.text     "description"
     t.datetime "release_date"
     t.string   "director"
+    t.text     "source"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -33,8 +34,9 @@ ActiveRecord::Schema.define(version: 20161229203541) do
 
   create_table "languages", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "language_code"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "languages_schools", id: false, force: :cascade do |t|
@@ -69,6 +71,16 @@ ActiveRecord::Schema.define(version: 20161229203541) do
     t.text     "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subtitles", force: :cascade do |t|
+    t.text     "source"
+    t.integer  "film_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["film_id"], name: "index_subtitles_on_film_id", using: :btree
+    t.index ["language_id"], name: "index_subtitles_on_language_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
