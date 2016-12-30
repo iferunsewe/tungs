@@ -22,3 +22,18 @@
       %hr
       .content
       %button.memory-button.btn.btn-info{type: 'button', 'data-user-id' => current_user.id, 'data-film-id' => @film.id } Add to Memory
+  .memory-bank
+    %h4 Memory Bank
+    %hr
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Text
+          %th Translation
+          %th
+      %tbody
+        - @memories.each do | memory |
+          %tr
+            %td= memory.text
+            %td= memory.translation
+            %td

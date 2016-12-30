@@ -2,6 +2,7 @@ class FilmsController < ApplicationController
   before_action :set_film, only: :show
 
   def show
+    @memories = Memory.where(film_id: @film.id, user_id: current_user.id)
   end
 
   private
