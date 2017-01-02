@@ -20,6 +20,10 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
+  .field
+    = f.label :native_language
+    %br/
+    = f.text_field :native_language
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"
