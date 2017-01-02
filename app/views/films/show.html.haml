@@ -5,7 +5,8 @@
     %figure#video-container
       %video#video{src: asset_path(@film.source), type: 'video/mp4', preload: true}
         - @film.subtitles.each do |subtitle|
-          %track{label: subtitle.language.name, kind: 'subtitles', srclang:subtitle.language.language_code, src: asset_path(subtitle.source), id: subtitle.language.id}
+          - binding.pry
+          %track{label: subtitle.language.name, kind: 'subtitles', srclang: subtitle.language.language_code, src: asset_path(subtitle.source), id: subtitle.language.id}
       #subtitles-container
       #video-controls.controls{'data-state' => 'hidden'}
         %progress#progress{value: '0', min: '0'}
@@ -17,6 +18,14 @@
         %button#voldec{type: 'button', 'data-state' => 'voldown'}
         %button#fullscreen{type: 'button', 'data-state' => 'go-fullscreen'}
         %button#subtitles{type: 'button', 'data-state' => 'subtitles'} CC
+        %button#speed{type: 'button', 'data-state' => 'speed'} Slow
+    %ul#speed-menu{'data-state' => 'hidden'}
+      %li
+        %button 0.5
+      %li
+        %button 0.75
+      %li
+        %button 1
     #translation-container
       %h4.title Translate
       %hr
