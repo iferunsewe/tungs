@@ -9,15 +9,31 @@ vControls.showCreated = function(){
     videoControls.setAttribute('data-state', 'visible');
 };
 
+vControls.hideAfterTimeLimit = function(videoControls){
+   videoControls.delay(5000).fadeOut();
+};
+
+vControls.showOnHover = function(videoControls){
+    var videoContainer = $('#video-container');
+    videoContainer.hover(function(){
+        if(videoControls.css('display') == 'none'){
+            videoControls.fadeIn();
+            vControls.hideAfterTimeLimit(videoControls);
+        }
+    })
+};
 
 $(document).ready(function () {
     'use strict';
     // Does the browser actually support the video element?
     var supportsVideo = !!document.createElement('video').canPlayType;
     if (supportsVideo) {
+        var videoControls = $('ul#controls-container');
         //// Hide the default controls
         vControls.hideDefault();
-        // Display the user defined video controls
-        vControls.showCreated();
+
+        //vControls.hideAfterTimeLimit(videoControls);
+        //
+        //vControls.showOnHover(videoControls);
     }
 });

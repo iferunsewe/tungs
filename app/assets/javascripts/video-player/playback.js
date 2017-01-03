@@ -66,14 +66,15 @@ button = {};
 // Changes the button state of certain button's so the correct visuals can be displayed with CSS
 button.change = function(type){
     // Play/Pause button
-    var playButton = document.getElementById('playpause');
-    var muteButton = document.getElementById('mute');
+    var playButton = $('#playpause');
+    var muteButton = $('#mute');
     if (type == 'playpause') {
+        console.log('Type playpause');
         if (video.paused || video.ended) {
-            playButton.setAttribute('data-state', 'play');
+            playButton.addClass('fa-play').removeClass('fa-pause');
         }
         else {
-            playButton.setAttribute('data-state', 'pause');
+            playButton.addClass('fa-pause').removeClass('fa-play');
         }
     }
     // Mute button
@@ -90,14 +91,14 @@ $(document).ready(function () {
     if (supportsVideo) {
         playback.fakeProgress();
         if (document.addEventListener) {
-            playback.loadMetadata();
+            //playback.loadMetadata();
             // Add event listeners for video specific events
             playback.play();
             playback.pause();
             playback.playButtonClick();
-            playback.stop();
-            playback.updateProgressBar();
-            playback.progressBarClick();
+            //playback.stop();
+            //playback.updateProgressBar();
+            //playback.progressBarClick();
         }
     }
 });

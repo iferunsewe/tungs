@@ -56,5 +56,6 @@ gem 'haml-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'react-rails'
+gem "font-awesome-rails"
 
 gem 'erb2haml', group: :development

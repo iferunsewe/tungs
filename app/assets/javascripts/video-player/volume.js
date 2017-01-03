@@ -80,10 +80,10 @@ $(document).ready(function () {
     if (supportsVideo) {
 
         if (document.addEventListener) {
-            volume.changing();
-            volume.mute();
-            volume.increase();
-            volume.decrease();
+            //volume.changing();
+            //volume.mute();
+            //volume.increase();
+            //volume.decrease();
         }
     }
 

@@ -22,8 +22,8 @@ $(document).ready(function () {
 
     if (supportsVideo) {
         if (document.addEventListener) {
-            speed.showMenu();
-            speed.setSpeed();
+            //speed.showMenu();
+            //speed.setSpeed();
         }
     }
 });

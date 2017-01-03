@@ -74,16 +74,16 @@ fullscreen.listenForChange = function(){
     });
 };
 
-$(document).ready(function () {
-    'use strict';
-
-    var supportsVideo = !!document.createElement('video').canPlayType;
-
-    if (supportsVideo) {
-        fullscreen.enabled();
-        if (document.addEventListener) {
-            fullscreen.enter();
-            fullscreen.listenForChange();
-        }
-    }
-});
+//$(document).ready(function () {
+//    'use strict';
+//
+//    var supportsVideo = !!document.createElement('video').canPlayType;
+//
+//    if (supportsVideo) {
+//        fullscreen.enabled();
+//        if (document.addEventListener) {
+//            fullscreen.enter();
+//            fullscreen.listenForChange();
+//        }
+//    }
+//});

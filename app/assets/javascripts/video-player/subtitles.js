@@ -184,10 +184,10 @@ $(document).ready(function () {
     if (supportsVideo) {
         //translation.hideContainer();
         if (document.addEventListener) {
-            subtitles.off();
-            subtitles.createMenu();
-            subtitles.translate();
-            translation.addToMemory();
+            //subtitles.off();
+            //subtitles.createMenu();
+            //subtitles.translate();
+            //translation.addToMemory();
         }
     }
 });
