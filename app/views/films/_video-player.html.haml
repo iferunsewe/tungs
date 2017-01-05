@@ -19,3 +19,14 @@
 %ul#controls-container{'data-state' => 'visible'}
   %li
     %button#playpause.fa.fa-play
+  %li#volume-container
+    %button.volume.fa.fa-volume-up
+    %input#volume-bar{type: 'range', min: "0", max: "1", step: "0.1", value: "0", orient: "vertical"}
+  %li
+    #slow-button slow
+  %li.right
+    %button#fullscreen-button.fa.fa-expand
+  %li.right
+    %button#subtitles-button.fa.fa-cc
+  %li.right
+    #time-display 0.00/0.00

@@ -35,16 +35,26 @@ figure{
     width: 100%;
     background:rgba(255, 255, 255, 0.53);
     list-style: none;
-    li{
+    li {
       height: 100%;
       float: left;
       display: inline-block;
-      width: 5%;
-      button{
+      width: auto;
+      * {
+        display: inline;
+      }
+      button {
         font-size: 200%;
         background: transparent;
         border: none;
       }
+      input[type="range"]{
+        width: 50%;
+      }
+    }
+    li.right{
+      float: right;
+      margin: 0 1%;
     }
   }
 

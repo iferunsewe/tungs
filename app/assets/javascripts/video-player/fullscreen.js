@@ -2,7 +2,7 @@ fullscreen = {};
 
 // Check if the browser supports the Fullscreen API
 fullscreen.enabled = function(){
-    var fullscreenButton = document.getElementById('fullscreen');
+    var fullscreenButton = $('#fullscreen-button');
     var enabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
     if (!enabled) {
         fullscreenButton.style.display = 'none';
@@ -11,10 +11,11 @@ fullscreen.enabled = function(){
 // Set the video container's fullscreen state
 fullscreen.setData = function(state){
     var videoContainer = document.getElementById('video-container');
-    var fullscreenButton = document.getElementById('fullscreen');
+    var fullscreenButton = $('#fullscreen-button');
     videoContainer.setAttribute('data-fullscreen', !!state);
-    // Set the fullscreen button's 'data-state' which allows the correct button image to be set via CSS
-    fullscreenButton.setAttribute('data-state', !!state ? 'cancel-fullscreen' : 'go-fullscreen');
+    var removedClass = state == true ? 'fa-expand' : 'fa-compress';
+    var addedClass = state == true ? 'fa-compress' : 'fa-expand';
+    fullscreenButton.removeClass(removedClass).addClass(addedClass);
 };
 //Checks if the document is currently in fullscreen mode
 fullscreen.isOn = function(){
@@ -52,8 +53,8 @@ fullscreen.handle = function(){
 };
 
 fullscreen.enter = function(){
-    var fullscreenButton = document.getElementById('fullscreen');
-    fullscreenButton.addEventListener('click', function (e) {
+    var fullscreenButton = $('#fullscreen-button');
+    fullscreenButton.click(function () {
         fullscreen.handle();
     });
 };
@@ -74,16 +75,16 @@ fullscreen.listenForChange = function(){
     });
 };
 
-//$(document).ready(function () {
-//    'use strict';
-//
-//    var supportsVideo = !!document.createElement('video').canPlayType;
-//
-//    if (supportsVideo) {
-//        fullscreen.enabled();
-//        if (document.addEventListener) {
-//            fullscreen.enter();
-//            fullscreen.listenForChange();
-//        }
-//    }
-//});
+$(document).ready(function () {
+    'use strict';
+
+    var supportsVideo = !!document.createElement('video').canPlayType;
+
+    if (supportsVideo) {
+        fullscreen.enabled();
+        if (document.addEventListener) {
+            fullscreen.enter();
+            fullscreen.listenForChange();
+        }
+    }
+});

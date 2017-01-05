@@ -32,8 +32,8 @@ $(document).ready(function () {
         //// Hide the default controls
         vControls.hideDefault();
 
-        //vControls.hideAfterTimeLimit(videoControls);
-        //
-        //vControls.showOnHover(videoControls);
+        vControls.hideAfterTimeLimit(videoControls);
+
+        vControls.showOnHover(videoControls);
     }
 });

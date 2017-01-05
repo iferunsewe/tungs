@@ -46,13 +46,15 @@ playback.loadMetadata = function(){
     });
 };
 playback.play = function(){
+    var playButton = $('#playpause');
     video.addEventListener('play', function () {
-        button.change('playpause');
+        playButton.removeClass('fa-play').addClass('fa-pause');
     }, false);
 };
 playback.pause = function(){
+    var playButton = $('#playpause');
     video.addEventListener('pause', function () {
-        button.change('playpause');
+        playButton.removeClass('fa-pause').addClass('fa-play');
     }, false);
 };
 // If the browser doesn't support the progress element, set its state for some different styling
@@ -62,26 +64,6 @@ playback.fakeProgress = function(){
     if (!supportsProgress) videoProgress.setAttribute('data-state', 'fake');
 };
 
-button = {};
-// Changes the button state of certain button's so the correct visuals can be displayed with CSS
-button.change = function(type){
-    // Play/Pause button
-    var playButton = $('#playpause');
-    var muteButton = $('#mute');
-    if (type == 'playpause') {
-        console.log('Type playpause');
-        if (video.paused || video.ended) {
-            playButton.addClass('fa-play').removeClass('fa-pause');
-        }
-        else {
-            playButton.addClass('fa-pause').removeClass('fa-play');
-        }
-    }
-    // Mute button
-    else if (type == 'mute') {
-        muteButton.setAttribute('data-state', video.muted ? 'unmute' : 'mute');
-    }
-};
 
 $(document).ready(function () {
     'use strict';
