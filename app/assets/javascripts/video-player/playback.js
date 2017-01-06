@@ -46,7 +46,7 @@ playback.loadMetadata = function(){
     });
 };
 playback.play = function(){
-    var playButton = $('#playpause');
+    // var playButton = $('#playpause');
     video.addEventListener('play', function () {
         playButton.removeClass('fa-play').addClass('fa-pause');
     }, false);
@@ -69,6 +69,7 @@ $(document).ready(function () {
     'use strict';
 
     var supportsVideo = !!document.createElement('video').canPlayType;
+    window.playButton = $('#playpause');
 
     if (supportsVideo) {
         playback.fakeProgress();
