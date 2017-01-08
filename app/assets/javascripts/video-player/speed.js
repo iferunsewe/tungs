@@ -1,13 +1,5 @@
 speed = {};
 
-//speed.showMenu = function(){
-//    var speedButton = $('button#slow-button');
-//    var speedMenu = $('ul#speed-menu');
-//    speedButton.click(function(e){
-//        speedMenu.toggle();
-//    });
-//};
-
 speed.setSpeed = function(speed){
     var speedRateButton = $('ul#speed-menu li button');
     speedRateButton.click(function(){
@@ -22,7 +14,6 @@ $(document).ready(function () {
 
     if (supportsVideo) {
         if (document.addEventListener) {
-            //speed.showMenu();
             speed.setSpeed();
         }
     }

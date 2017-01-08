@@ -36,12 +36,14 @@ figure{
     list-style: none;
     #scrubber{
       width: 97.5%;
+      height: 15%;
       position: absolute;
       top: -60%;
       background: black;
       #progress-bar{
         width: 0;
-        height: 5%;
+        position: absolute;
+        height: 100%;
         background-color: red;
       }
     }

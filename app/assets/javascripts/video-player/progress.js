@@ -5,7 +5,35 @@ progress.fake = function () {
     var videoProgress = document.getElementById('progress');
     var supportsProgress = (document.createElement('progress').max !== undefined);
     if (!supportsProgress) videoProgress.setAttribute('data-state', 'fake');
-}
+};
+
+progress.updateProgressBar = function(){
+    video.addEventListener('timeupdate', function(){
+        var percent = video.currentTime / video.duration;
+        progress.setBarWidth(Math.floor((percent * 100)) + "%")
+    })
+};
+
+progress.setBarWidth = function(percent){
+    var progressBar = $('#progress-bar');
+    progressBar.width(percent)
+};
+
+progress.updateTime = function(percent){
+    video.currentTime = percent * video.duration;
+};
+
+progress.scrubberMouseDownHandler = function(){
+    var scrubber = $('#scrubber');
+    scrubber.on('mousedown', function(e){
+        var scrubberPosition = $(this);
+        var x = e.pageX - scrubberPosition.offset().left;
+        var percent = x / scrubberPosition.width();
+        progress.setBarWidth(percent);
+        progress.updateTime(percent);
+    });
+};
+
 $(document).ready(function () {
     'use strict';
 
@@ -14,7 +42,8 @@ $(document).ready(function () {
     if (supportsVideo) {
         progress.fake();
         if (document.addEventListener) {
-            var progressBar = document.getElementById('progress-bar');
+            progress.updateProgressBar();
+            progress.scrubberMouseDownHandler();
         }
     }
 });
