@@ -136,23 +136,11 @@ figure[data-fullscreen=true] {
   figcaption {
     display:none;
   }
-  //#video-controls {
-  //  position:absolute;
-  //  bottom:0 !important;
-  //  z-index:2147483647;
-  //  height: 5% !important;
-  //  button{
-  //    width: 2% !important;
-  //    margin-left: 0.5%;
-  //    margin-right: 0.5%;
-  //  }
-  //  li {
-  //    width:5%;
-  //  }
-  //}
-  //.subtitles-menu {
-  //  position:absolute;
-  //  z-index:2147483647;
-  //  bottom: 5%;
-  //}
+  #controls-container{
+    position:absolute;
+    bottom:0 !important;
+    z-index:2147483647;
+    height: 5% !important;
+    left: 0;
+  }
 }

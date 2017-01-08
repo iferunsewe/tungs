@@ -64,12 +64,6 @@ subtitles.translate = function(){
     });
 };
 
-//subtitles.clickMenu = function(){
-//    var subtitlesButton = $('#subtitles-menu-button');
-//    subtitlesButton.click(function () {
-//        subtitles.toggleMenu();
-//    });
-//};
 
 subtitles.clickLanguageButton = function () {
     var languageButton = $('.language-button');
@@ -180,7 +174,6 @@ $(document).ready(function () {
         //translation.hideContainer();
         if (document.addEventListener) {
             subtitles.off();
-            //subtitles.clickMenu();
             subtitles.clickLanguageButton();
             subtitles.translate();
             translation.addToMemory();

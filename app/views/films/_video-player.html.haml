@@ -1,22 +1,3 @@
--##video-controls.controls{'data-state' => 'hidden'}
--#  %progress#progress{value: '0', min: '0'}
--#    %span#progress-bar
--#  %button#playpause{type: 'button', 'data-state' => 'play'}
--#  %button#stop{type: 'button', 'data-state' => 'stop'}
--#  %button#mute{type: 'button', 'data-state' => 'mute'}
--#  %button#volinc{type: 'button', 'data-state' => 'volup'}
--#  %button#voldec{type: 'button', 'data-state' => 'voldown'}
--#  %button#fullscreen{type: 'button', 'data-state' => 'go-fullscreen'}
--#  %button#subtitles{type: 'button', 'data-state' => 'subtitles'} CC
--#  %button#speed{type: 'button', 'data-state' => 'speed'} Slow
--#  %ul#speed-menu{'data-state' => 'hidden'}
--#    %li
--#      %button 0.5
--#    %li
--#      %button 0.75
--#    %li
--#      %button 1
-
 %ul#controls-container{'data-state' => 'visible'}
   #scrubber.main-controls
     #progress-bar
@@ -47,4 +28,4 @@
           %button.language-button{id: subtitle.language.id, value: subtitle.language.name, lang: subtitle.language.language_code, 'data-state' => 'inactive'}= subtitle.language.name
         %hr
   %li.main-control-container.right
-    #time-display 0.00/0.00
+    #time-display

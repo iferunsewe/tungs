@@ -21,9 +21,15 @@ vControls.showOnHover = function(videoControls){
 vControls.hideSubControls = function(){
     var subControlsButtons = $('.sub-controls-button');
     var subControls = $('.sub-controls');
+    var progressBar = $('#scrubber');
     subControlsButtons.click(function(){
         var displayedSubControl = $($( this ).siblings('.sub-controls')[0]);
         displayedSubControl.toggle();
+        if(displayedSubControl.is(':visible')){
+            progressBar.hide()
+        } else {
+            progressBar.show()
+        }
         subControls.each(function(i){
             if(displayedSubControl.attr('id') != $( this ).attr('id')){
                 $( this).hide();
@@ -37,7 +43,6 @@ $(document).ready(function () {
     // Does the browser actually support the video element?
     var supportsVideo = !!document.createElement('video').canPlayType;
     if (supportsVideo) {
-        var videoControls = $('ul#controls-container');
         //// Hide the default controls
         vControls.hideDefault();
 
