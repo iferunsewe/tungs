@@ -24,6 +24,6 @@ class MemoriesController < ApplicationController
   private
 
   def memory_params
-    params.require(:memory).permit(:text, :translation, :user_id, :film_id, :language_id)
+    params.require(:memory).permit(:text, :translation, :time_in_video, :user_id, :film_id, :language_id)
   end
 end

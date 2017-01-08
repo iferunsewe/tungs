@@ -44,6 +44,9 @@ subtitles.translate = function(){
     var subtitlesContainer = $("#subtitles-container");
     var translationContent = $("#translation-container .content");
     subtitlesContainer.click(function (e) {
+        // Set the time in video translated so it can be displayed in the memory bank and users can use it as a shortcut
+        var activeCueStartTime = subtitles.activeTrack().activeCues[0].startTime;
+        translationContent.attr('data-time', activeCueStartTime);
         var targetedText = e.target.textContent;
         var requestStr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160811T192805Z.efeabd9b6a63be74.83bd8ebdac3a740ad49e31cb93eea218d37a91a8&text=" + targetedText + "&lang=en-fr";
         var translatedString = '';
@@ -134,12 +137,15 @@ translation.toggleMemoryButtonIfHidden=  function(){
 
 translation.addToMemory = function(){
     var memoryButton = $('.memory-button');
+    var translationContent = $("#translation-container .content");
     memoryButton.click(function() {
         var originalText = $('#original-text').text();
         var translatedText = $('#translated-text').text();
         var userId = parseInt($(this).attr('data-user-id'));
         var filmId = parseInt($(this).attr('data-film-id'));
         var languageId = parseInt(subtitles.activeTrack().id);
+        var timeInFilm = translationContent.attr('data-time');
+        console.log(timeInFilm);
         $.ajax({
             type: "POST",
             url: "/memories",
@@ -147,13 +153,13 @@ translation.addToMemory = function(){
                 memory: {
                     text: originalText,
                     translation: translatedText,
+                    time_in_video: timeInFilm,
                     user_id: userId,
                     film_id: filmId,
                     language_id: languageId
                 }
             },
             success: function (data) {
-                var translationContent = $("#translation-container .content");
                 translationContent.html('').append("<p><span>Translation remembered</p></span>")
                 translation.hideMemoryButton();
             },

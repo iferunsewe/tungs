@@ -56,11 +56,12 @@ ActiveRecord::Schema.define(version: 20170102114445) do
   create_table "memories", force: :cascade do |t|
     t.string   "text"
     t.string   "translation"
+    t.integer  "time_in_video"
     t.integer  "user_id"
     t.integer  "film_id"
     t.integer  "language_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["film_id"], name: "index_memories_on_film_id", using: :btree
     t.index ["language_id"], name: "index_memories_on_language_id", using: :btree
     t.index ["user_id"], name: "index_memories_on_user_id", using: :btree

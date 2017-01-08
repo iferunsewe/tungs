@@ -21,10 +21,12 @@
         %tr
           %th Text
           %th Translation
+          %th Time
           %th
       %tbody
         - @memories.each do | memory |
           %tr
             %td= memory.text
             %td= memory.translation
-            %td
+            %td= memory.time_in_video
+            %td=
