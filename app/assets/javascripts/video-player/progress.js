@@ -29,8 +29,6 @@ progress.scrubberMouseDownHandler = function(){
 
 progress.showTime = function(){
     var timeDisplay = $('#time-display');
-    console.log(timeDisplay.attr('max'));
-    console.log(timeDisplay.attr('min'));
     var formattedMaxTime = timeHelper.formatSeconds(timeDisplay.attr('max'));
     var formattedMinTime = timeHelper.formatSeconds(timeDisplay.attr('min'));
     timeDisplay.text(formattedMinTime + '/' + formattedMaxTime);

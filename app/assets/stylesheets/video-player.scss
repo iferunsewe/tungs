@@ -39,12 +39,12 @@ figure{
       height: 15%;
       position: absolute;
       top: -60%;
-      background: black;
+      background: rgba(255, 255, 255, 0.53);
       #progress-bar{
         width: 0;
         position: absolute;
         height: 100%;
-        background-color: red;
+        background-color: rgba(251, 128, 128, 0.71);
       }
     }
 
