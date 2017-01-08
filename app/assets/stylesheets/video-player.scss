@@ -26,7 +26,7 @@ figure{
     }
   }
   #controls-container{
-    padding: 0.5%;
+    padding: 0 0.5% 0.5% 0.5%;
     margin:0;
     bottom: 0;
     position:absolute;
@@ -34,11 +34,24 @@ figure{
     width: 100%;
     background:rgba(255, 255, 255, 0.53);
     list-style: none;
+    #scrubber{
+      width: 97.5%;
+      position: absolute;
+      top: -60%;
+      background: black;
+      #progress-bar{
+        width: 0;
+        height: 5%;
+        background-color: red;
+      }
+    }
+
     li {
       height: 100%;
-      float: left;
       display: inline-block;
       width: auto;
+      float: left;
+      padding-top: 0.5%;
       * {
         display: inline;
       }
@@ -47,33 +60,39 @@ figure{
         background: transparent;
         border: none;
       }
+      #slow-button{
+        font-size: 150%;
+      }
       input[type="range"]{
         width: 50%;
       }
-    }
-    li.right{
-      float: right;
-      margin: 0 1%;
-      position: relative;
-      #subtitles-menu{
+      .sub-controls{
         padding-left: 0;
-        width: 370%;
         height: auto;
         display: none;
-        left: -135%;
         background: rgba(255, 255, 255, 0.53);
-        top: -255%;
+        top: -230%;
         position: absolute;
         li{
           width: 100%;
           font-size: 150%;
           height: auto;
-          button.language-button{
+          button, #subtitles-off{
             background: none;
             border: none;
           }
         }
       }
+    }
+    li.right{
+      float: right;
+      margin: 0 1%;
+    }
+    li.left{
+      float: left;
+    }
+    li:hover{
+      background: rgba(255, 255, 255, 0.53);
     }
   }
   #subcontrols-container{
@@ -87,33 +106,6 @@ figure{
     background:rgba(255, 255, 255, 0.53);
     list-style: none;
   }
-  //#speed-menu{
-  //  display:none;
-  //  position:absolute;
-  //  bottom:14.8%;
-  //  right:20px;
-  //  background:#666;
-  //  list-style-type:none;
-  //  margin:0;
-  //  padding:0;
-  //  width:100px;
-  //  padding:10px;
-  //  li{
-  //    padding:0;
-  //    text-align:center;
-  //    button{
-  //      border:none;
-  //      background:#000;
-  //      color:#fff;
-  //      cursor:pointer;
-  //      width:90%;
-  //      padding:2px 5px;
-  //      -moz-border-radius:2px;
-  //      -webkit-border-radius:2px;
-  //      border-radius:2px;
-  //    }
-  //  }
-  //}
 }
 
 /* styling for fullscreen */

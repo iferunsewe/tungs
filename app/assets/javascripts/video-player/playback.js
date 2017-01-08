@@ -57,11 +57,9 @@ playback.pause = function(){
         playButton.removeClass('fa-pause').addClass('fa-play');
     }, false);
 };
-// If the browser doesn't support the progress element, set its state for some different styling
+
 playback.fakeProgress = function(){
-    var videoProgress = document.getElementById('progress');
-    var supportsProgress = (document.createElement('progress').max !== undefined);
-    if (!supportsProgress) videoProgress.setAttribute('data-state', 'fake');
+
 };
 
 

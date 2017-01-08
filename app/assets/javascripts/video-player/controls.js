@@ -3,11 +3,6 @@ vControls = {};
 vControls.hideDefault = function(){
     video.controls = false
 };
-// Display the user defined video controls
-vControls.showCreated = function(){
-    var videoControls = document.getElementById('video-controls');
-    videoControls.setAttribute('data-state', 'visible');
-};
 
 vControls.hideAfterTimeLimit = function(videoControls){
    videoControls.delay(5000).fadeOut();
@@ -23,6 +18,20 @@ vControls.showOnHover = function(videoControls){
     })
 };
 
+vControls.hideSubControls = function(){
+    var subControlsButtons = $('.sub-controls-button');
+    var subControls = $('.sub-controls');
+    subControlsButtons.click(function(){
+        var displayedSubControl = $($( this ).siblings('.sub-controls')[0]);
+        displayedSubControl.toggle();
+        subControls.each(function(i){
+            if(displayedSubControl.attr('id') != $( this ).attr('id')){
+                $( this).hide();
+            }
+        });
+    });
+};
+
 $(document).ready(function () {
     'use strict';
     // Does the browser actually support the video element?
@@ -35,5 +44,7 @@ $(document).ready(function () {
         //vControls.hideAfterTimeLimit(videoControls);
         //
         //vControls.showOnHover(videoConterols);
+
+        vControls.hideSubControls();
     }
 });

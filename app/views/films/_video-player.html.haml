@@ -18,23 +18,33 @@
 -#      %button 1
 
 %ul#controls-container{'data-state' => 'visible'}
-  %li
+  #scrubber.main-controls
+    #progress-bar
+  %li.main-control-container.left
     %button.main-controls#playpause.fa.fa-play
-  %li#volume-container
+  %li.main-control-container.left#volume-container
     %button.main-controls.volume.fa.fa-volume-up
     %input.main-controls#volume-bar{type: 'range', min: "0", max: "1", step: "0.1", value: "0", orient: "vertical"}
-  %li
-    #slow-button slow
-  %li.right
+  %li.main-control-container.left
+    %button.main-controls.sub-controls-button#slow-button slow
+    %ul#speed-menu.sub-controls{'data-state' => 'hidden'}
+      %li
+        %button 0.5
+      %li
+        %button 0.75
+      %li
+        %button 1
+  %li.main-control-container.right
     %button.main-controls#fullscreen-button.fa.fa-expand
-  %li.right#subtitles-menu-container
-    %button.main-controls#subtitles-menu-button.fa.fa-cc
-    %ul#subtitles-menu
-      %li.language-button#subtitles-off{label: 'Off'} Off
+  %li.main-control-container.right#subtitles-menu-container
+    %button.main-controls.sub-controls-button#subtitles-menu-button.fa.fa-cc
+    %ul#subtitles-menu.sub-controls
+      %li
+        %button#subtitles-off{label: 'Off'} Off
       %hr
       - @film.subtitles.each do |subtitle|
         %li
           %button.language-button{id: subtitle.language.id, value: subtitle.language.name, lang: subtitle.language.language_code, 'data-state' => 'inactive'}= subtitle.language.name
         %hr
-  %li.right
+  %li.main-control-container.right
     #time-display 0.00/0.00

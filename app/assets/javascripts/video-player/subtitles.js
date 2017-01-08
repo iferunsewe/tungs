@@ -12,11 +12,11 @@ subtitles.activeTrack = function(){
     return video.textTracks[activeButton.id - 1];
 };
 
-subtitles.modifyTrack = function(textTrack){
+subtitles.modifyTrack = function(){
     var cueText = '';
     var modText = '';
     var subtitlesContainer = $("#subtitles-container");
-    var cue = textTrack.activeCues[0]; // assuming there is only one active cue
+    var cue = subtitles.activeTrack().activeCues[0]; // assuming there is only one active cue
     // do something
     if (cue !== undefined) {
         cueText = cue.text.split(' ');
@@ -29,13 +29,15 @@ subtitles.modifyTrack = function(textTrack){
 
 // Split the track into html
 subtitles.splitTrack = function(){
-    var textTrack = subtitles.activeTrack();
     // Needed to display the first cue
-    subtitles.modifyTrack(textTrack);
-    textTrack.oncuechange = function () {
-        var textTrack = subtitles.activeTrack();
-        subtitles.modifyTrack(textTrack);
-    };
+    if (subtitles.languageButtonActive){
+        subtitles.modifyTrack();
+        subtitles.activeTrack().oncuechange = function () {
+            subtitles.modifyTrack();
+        };
+    }
+    var subtitlesContainer = $("#subtitles-container");
+    subtitlesContainer.show();
 };
 // Translate the selected subtitles
 subtitles.translate = function(){
@@ -62,36 +64,59 @@ subtitles.translate = function(){
     });
 };
 
-subtitles.clickMenu = function(){
-    var subtitlesButton = $('#subtitles-menu-button');
-    var subtitlesMenu = $('#subtitles-menu');
-    subtitlesButton.click(function () {
-        subtitlesMenu.toggle();
-    });
-};
+//subtitles.clickMenu = function(){
+//    var subtitlesButton = $('#subtitles-menu-button');
+//    subtitlesButton.click(function () {
+//        subtitles.toggleMenu();
+//    });
+//};
 
 subtitles.clickLanguageButton = function () {
     var languageButton = $('.language-button');
     languageButton.click(function () {
         // Set all buttons to inactive
         // Find the language to activate
-        var lang = $(this).attr('lang');
-        for (var i = 0; i < video.textTracks.length; i++) {
-            // For the 'subtitles-off' button, the first condition will never match so all will subtitles be turned off
-            if (video.textTracks[i].language == lang) {
-                $(this).attr('data-state', 'active');
-            }
-            else {
-                video.textTracks[i].mode = 'hidden';
-            }
-        }
-        if($(this).id != 'subtitles-off'){
-            subtitles.splitTrack();
-        }else{
-            var subtitlesContainer = $("#subtitles-container");
-            subtitlesContainer.hide();
-        }
+        subtitles.inactivateButton();
+        $(this).attr('data-state', 'active');
+        subtitles.splitTrack();
+        subtitles.toggleMenu();
+
     });
+};
+
+subtitles.toggleMenu = function(){
+    var subtitlesMenu = $('#subtitles-menu');
+    subtitlesMenu.toggle();
+};
+
+subtitles.clickOff = function(){
+    var subtitlesOffButton = $('#subtitles-off');
+    subtitlesOffButton.click(function(){
+        subtitles.toggleSubtitlesContainer();
+        subtitles.inactivateButton();
+        subtitles.toggleMenu();
+    })
+};
+
+subtitles.languageButtonActive = function(){
+    var activeButton = $("button.language-button[data-state='active']")[0];
+    if(activeButton){
+        return true;
+    } else{
+        return false;
+    }
+};
+
+subtitles.inactivateButton= function(){
+    var activeButton = $("button.language-button[data-state='active']")[0];
+    if(subtitles.languageButtonActive()) {
+        activeButton.setAttribute('data-state', 'inactive');
+    }
+};
+
+subtitles.toggleSubtitlesContainer = function(){
+    var subtitlesContainer = $("#subtitles-container");
+    subtitlesContainer.toggle();
 };
 
 translation = {};
@@ -154,11 +179,12 @@ $(document).ready(function () {
     if (supportsVideo) {
         //translation.hideContainer();
         if (document.addEventListener) {
-            subtitles.clickMenu();
-            subtitles.clickLanguageButton();
             subtitles.off();
+            //subtitles.clickMenu();
+            subtitles.clickLanguageButton();
             subtitles.translate();
             translation.addToMemory();
+            subtitles.clickOff();
         }
     }
 });
