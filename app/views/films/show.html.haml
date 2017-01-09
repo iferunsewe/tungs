@@ -28,5 +28,6 @@
           %tr
             %td= memory.text
             %td= memory.translation
-            %td= memory.time_in_video
-            %td=
+            %td
+              %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")
+            %td

@@ -145,7 +145,6 @@ translation.addToMemory = function(){
         var filmId = parseInt($(this).attr('data-film-id'));
         var languageId = parseInt(subtitles.activeTrack().id);
         var timeInFilm = translationContent.attr('data-time');
-        console.log(timeInFilm);
         $.ajax({
             type: "POST",
             url: "/memories",
