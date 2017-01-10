@@ -70,6 +70,7 @@ subtitles.translate = function(){
 
 subtitles.clickLanguageButton = function () {
     var languageButton = $('.language-button');
+    var progressBar = $('#scrubber');
     languageButton.click(function () {
         // Set all buttons to inactive
         // Find the language to activate
@@ -77,6 +78,7 @@ subtitles.clickLanguageButton = function () {
         $(this).attr('data-state', 'active');
         subtitles.splitTrack();
         subtitles.toggleMenu();
+        progressBar.show();
 
     });
 };
@@ -88,10 +90,12 @@ subtitles.toggleMenu = function(){
 
 subtitles.clickOff = function(){
     var subtitlesOffButton = $('#subtitles-off');
+    var progressBar = $('#scrubber');
     subtitlesOffButton.click(function(){
         subtitles.toggleSubtitlesContainer();
         subtitles.inactivateButton();
         subtitles.toggleMenu();
+        progressBar.show();
     })
 };
 
@@ -145,6 +149,7 @@ translation.addToMemory = function(){
         var filmId = parseInt($(this).attr('data-film-id'));
         var languageId = parseInt(subtitles.activeTrack().id);
         var timeInFilm = translationContent.attr('data-time');
+        console.log(timeInFilm);
         $.ajax({
             type: "POST",
             url: "/memories",

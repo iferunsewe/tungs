@@ -38,6 +38,30 @@ vControls.hideSubControls = function(){
     });
 };
 
+vControls.hideSubControlsIfNotTarget = function(){
+    $(document).mouseup(function (e)
+    {
+        var subControls = $('.sub-controls');
+
+        if (!subControls.is(e.target) // if the target of the click isn't the container...
+            && subControls.has(e.target).length === 0) // ... nor a descendant of the container
+        {
+            subControls.hide();
+        }
+    });
+};
+
+//vControls.toggleProgressBarDependentOnSubControls = function(){
+//    var subControls = $('.sub-controls');
+//    var progressBar = $('#scrubber');
+//    subControls.on('hide', function(){
+//        progressBar.show();
+//    });
+//    subControls.on('show', function(){
+//        progressBar.hide();
+//    });
+//};
+
 $(document).ready(function () {
     'use strict';
     // Does the browser actually support the video element?
@@ -51,5 +75,9 @@ $(document).ready(function () {
         //vControls.showOnHover(videoConterols);
 
         vControls.hideSubControls();
+
+        vControls.hideSubControlsIfNotTarget();
+
+        //vControls.toggleProgressBarDependentOnSubControls();
     }
 });

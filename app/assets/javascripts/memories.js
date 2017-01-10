@@ -4,8 +4,7 @@ memory.clickTime = function(){
     var memoryTime = $('.memory-time');
     memoryTime.click(function(){
         var clickedMemoryTime = $(this)[0];
-        var memoryTimeValue = clickedMemoryTime.getAttribute('value');
-        video.currentTime = memoryTimeValue
+        video.currentTime = clickedMemoryTime.getAttribute('value');
     })
 };
 
