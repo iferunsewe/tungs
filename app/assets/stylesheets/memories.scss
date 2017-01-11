@@ -2,15 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .memory-bank{
-  table{
-    tbody{
-      tr{
-        td{
-          a{
-            cursor: pointer;
+  width: 60%;
+  height: 60%;
+  margin: 0 auto;
+  h4{
+    text-align: center;
+  }
+  .memory-bank-table-container{
+    height: 60%;
+    overflow: scroll;
+    table{
+      tbody{
+        tr{
+          td{
+            a{
+              cursor: pointer;
+            }
           }
         }
       }
     }
+
   }
+
 }

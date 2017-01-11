@@ -16,18 +16,19 @@
   .memory-bank
     %h4 Memory Bank
     %hr
-    %table.table.table-bordered
-      %thead
-        %tr
-          %th Text
-          %th Translation
-          %th Time
-          %th
-      %tbody
-        - @memories.each do | memory |
+    .memory-bank-table-container
+      %table.table.table-bordered
+        %thead
           %tr
-            %td= memory.text
-            %td= memory.translation
-            %td
-              %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")
-            %td
+            %th Text
+            %th Translation
+            %th Time
+            %th
+        %tbody
+          - @memories.order(created_at: :desc).each do | memory |
+            %tr
+              %td= memory.text
+              %td= memory.translation
+              %td
+                %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")
+              %td
