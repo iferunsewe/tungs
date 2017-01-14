@@ -24,7 +24,6 @@
             %th Text
             %th Translation
             %th Time
-            %th
         %tbody
           - @memories.order(created_at: :desc).each do | memory |
             %tr
@@ -32,4 +31,4 @@
               %td= memory.translation
               %td
                 %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")
-              %td
+          
