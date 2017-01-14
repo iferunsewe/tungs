@@ -35,6 +35,6 @@ f6.languages = [english, spanish]
 sub1 = Subtitle.create source: 'les_obejts_wtf_2_en.vtt',film_id: f1.id, language_id: english.id
 sub2 = Subtitle.create source: 'les_obejts_wtf_2_fr.vtt',film_id: f1.id, language_id: french.id
 
-User.find(1).native_language = 'English'
+ife.native_language = 'English'
 
 

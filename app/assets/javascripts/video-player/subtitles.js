@@ -19,6 +19,7 @@ subtitles.modifyTrack = function(){
     var cue = subtitles.activeTrack().activeCues[0]; // assuming there is only one active cue
     // do something
     if (cue !== undefined) {
+        subtitlesContainer.attr('data-time', cue.startTime);
         cueText = cue.text.split(' ');
         for (var i = 0; i < cueText.length; i++) {
             modText += "<span>" + cueText[i] + "</span>" + " ";
@@ -45,8 +46,7 @@ subtitles.translate = function(){
     var translationContent = $("#translation-container .content");
     subtitlesContainer.click(function (e) {
         // Set the time in video translated so it can be displayed in the memory bank and users can use it as a shortcut
-        var activeCueStartTime = subtitles.activeTrack().activeCues[0].startTime;
-        translationContent.attr('data-time', activeCueStartTime);
+        translationContent.attr('data-time', subtitlesContainer.attr('data-time'));
         var targetedText = e.target.textContent;
         var requestStr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160811T192805Z.efeabd9b6a63be74.83bd8ebdac3a740ad49e31cb93eea218d37a91a8&text=" + targetedText + "&lang=en-fr";
         var translatedString = '';

@@ -19,13 +19,14 @@
     %button.main-controls#fullscreen-button.fa.fa-expand
   %li.main-control-container.right#subtitles-menu-container
     %button.main-controls.sub-controls-button#subtitles-menu-button.fa.fa-cc
-    %ul#subtitles-menu.sub-controls
-      %li
-        %button#subtitles-off{label: 'Off'} Off
-      %hr
-      - @film.subtitles.each do |subtitle|
+    - unless @film.subtitles.empty?
+      %ul#subtitles-menu.sub-controls
         %li
-          %button.language-button{id: subtitle.language.id, value: subtitle.language.name, lang: subtitle.language.language_code, 'data-state' => 'inactive'}= subtitle.language.name
+          %button#subtitles-off{label: 'Off'} Off
+        %hr
+        - @film.subtitles.each do |subtitle|
+          %li
+            %button.language-button{id: subtitle.language.id, value: subtitle.language.name, lang: subtitle.language.language_code, 'data-state' => 'inactive'}= subtitle.language.name
         %hr
   %li.main-control-container.right
     #time-display
