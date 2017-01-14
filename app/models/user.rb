@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   # Optional so I can create user to test with in development
   belongs_to :school, optional: true
-  has_and_belongs_to_many :languages
+  has_many :user_languages
+  has_many :languages, through: :user_languages
   has_many :memories
+  has_and_belongs_to_many :native_language
 end

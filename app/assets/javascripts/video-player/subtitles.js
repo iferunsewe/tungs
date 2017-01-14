@@ -44,11 +44,13 @@ subtitles.splitTrack = function(){
 subtitles.translate = function(){
     var subtitlesContainer = $("#subtitles-container");
     var translationContent = $("#translation-container .content");
+    var targetLanguageCode = subtitlesContainer.attr('data-target-language-code');
     subtitlesContainer.click(function (e) {
         // Set the time in video translated so it can be displayed in the memory bank and users can use it as a shortcut
         translationContent.attr('data-time', subtitlesContainer.attr('data-time'));
+        var activeLanguageCode = subtitles.activeTrack().language;
         var targetedText = e.target.textContent;
-        var requestStr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160811T192805Z.efeabd9b6a63be74.83bd8ebdac3a740ad49e31cb93eea218d37a91a8&text=" + targetedText + "&lang=en-fr";
+        var requestStr = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160811T192805Z.efeabd9b6a63be74.83bd8ebdac3a740ad49e31cb93eea218d37a91a8&text=" + targetedText + "&lang=" + activeLanguageCode + "-" + targetLanguageCode;
         var translatedString = '';
         $.ajax({
             url: requestStr,

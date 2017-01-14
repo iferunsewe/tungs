@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102114445) do
+ActiveRecord::Schema.define(version: 20170114143425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,13 +46,6 @@ ActiveRecord::Schema.define(version: 20170102114445) do
     t.index ["school_id"], name: "index_languages_schools_on_school_id", using: :btree
   end
 
-  create_table "languages_users", id: false, force: :cascade do |t|
-    t.integer "language_id", null: false
-    t.integer "user_id",     null: false
-    t.index ["language_id"], name: "index_languages_users_on_language_id", using: :btree
-    t.index ["user_id"], name: "index_languages_users_on_user_id", using: :btree
-  end
-
   create_table "memories", force: :cascade do |t|
     t.string   "text"
     t.string   "translation"
@@ -84,6 +77,17 @@ ActiveRecord::Schema.define(version: 20170102114445) do
     t.index ["language_id"], name: "index_subtitles_on_language_id", using: :btree
   end
 
+  create_table "user_languages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.boolean  "know"
+    t.boolean  "learning"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["language_id"], name: "index_user_languages_on_language_id", using: :btree
+    t.index ["user_id"], name: "index_user_languages_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -101,7 +105,6 @@ ActiveRecord::Schema.define(version: 20170102114445) do
     t.integer  "school_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "native_language"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["school_id"], name: "index_users_on_school_id", using: :btree

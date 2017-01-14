@@ -6,7 +6,8 @@
       %video#video{src: asset_path(@film.source), type: 'video/mp4', preload: true}
         - @film.subtitles.each do |subtitle|
           %track{label: subtitle.language.name, kind: 'subtitles', srclang: subtitle.language.language_code, src: asset_path(subtitle.source), id: subtitle.language.id}
-      #subtitles-container
+      - target_language = current_user.user_languages.where(know: true).map do |association| association.language end[0]
+      #subtitles-container{'data-target-language-code' => target_language.language_code}
       = render partial: 'video-player'
     #translation-container
       %h4.title Translate
