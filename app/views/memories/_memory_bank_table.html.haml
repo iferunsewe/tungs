@@ -1,0 +1,17 @@
+.memory-bank
+  %h4 Memory Bank
+  %hr
+  .memory-bank-table-container
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Text
+          %th Translation
+          %th Time
+      %tbody
+        - @memories.order(created_at: :desc).each do | memory |
+          %tr
+            %td= memory.text
+            %td= memory.translation
+            %td
+              %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")

@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @films = helpers.films_for_user(@user)
   end
 
+  def current_user_home
+    redirect_to current_user
+  end
+
   private
 
   def set_user

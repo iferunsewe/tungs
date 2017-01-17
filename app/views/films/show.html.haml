@@ -8,27 +8,12 @@
           %track{label: subtitle.language.name, kind: 'subtitles', srclang: subtitle.language.language_code, src: asset_path(subtitle.source), id: subtitle.language.id}
       - target_language = current_user.user_languages.where(know: true).map do |association| association.language end[0]
       #subtitles-container{'data-target-language-code' => target_language.language_code}
-      = render partial: 'video-player'
+      = render partial: 'video_player'
     #translation-container
       %h4.title Translate
       %hr
       .content
       %button.memory-button.btn.btn-info{type: 'button', 'data-user-id' => current_user.id, 'data-film-id' => @film.id } Add to Memory
-  .memory-bank
-    %h4 Memory Bank
-    %hr
-    .memory-bank-table-container
-      %table.table.table-bordered
-        %thead
-          %tr
-            %th Text
-            %th Translation
-            %th Time
-        %tbody
-          - @memories.order(created_at: :desc).each do | memory |
-            %tr
-              %td= memory.text
-              %td= memory.translation
-              %td
-                %a.memory-time{value: memory.time_in_video}= Time.at(memory.time_in_video).strftime("%M:%S")
+  = render partial: 'memories/memory_bank_table'
+
           
