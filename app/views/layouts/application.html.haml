@@ -7,4 +7,21 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        %ul.nav.navbar-nav
+          %li
+            %h5.navbar-text
+              - if user_signed_in?
+                Hello #{current_user.name}
+              - else
+                Welcome   
+          %li.logo
+            %h3.navbar-text
+              = link_to 'tungs', root_url
+          %li.navbar-right
+            %h5.navbar-text
+              = link_to 'log out', destroy_user_session_path, method: :delete if user_signed_in?
+    .notice= notice
+    .alert= alert
     = yield

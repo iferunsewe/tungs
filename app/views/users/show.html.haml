@@ -1,0 +1,24 @@
+-#= react_component 'User', {  user: @user, school: @school, films: @films  }
+#user-container
+  .user-info-section
+    %h2.user-name= @user.name
+    %h4.users-school-name= @user.school.name
+  %hr
+  .user-film-section
+    %h3 Films
+    %hr
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Name
+          %th Director
+          %th Description
+          %th Release Date
+          %th
+      %tbody
+        - @films.each do | film |
+          %tr
+            %td= link_to film.name, film
+            %td= film.director
+            %td= film.description
+            %td= film.release_date

@@ -1,0 +1,150 @@
+figure{
+  position: relative;
+  width: 99%;
+  height: 100%;
+  text-align: center;
+  display: inline-block;
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  #subtitles-container{
+    top: -95%;
+    padding: 0.5%;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    color:  black;
+    position: relative;
+    margin: 0 auto;
+    max-width: 40%;
+    background-color: rgba(255, 255, 255, 0.53);
+    cursor: pointer;
+    //font-weight: bold;
+    //text-shadow: white 2px 2px 12px;
+    span{
+      cursor: pointer;
+    }
+    span:hover{
+      background: rgba(255, 255, 255, 0.53);
+    }
+  }
+  #controls-container{
+    padding: 0 0.5% 0.5% 0.5%;
+    margin:0;
+    bottom: 0;
+    position:absolute;
+    height:9%;
+    width: 100%;
+    background:rgba(255, 255, 255, 0.53);
+    list-style: none;
+    #scrubber{
+      width: 97.5%;
+      height: 15%;
+      position: absolute;
+      top: -60%;
+      background: rgba(255, 255, 255, 0.53);
+      #progress-bar{
+        width: 0;
+        position: absolute;
+        height: 100%;
+        background-color: rgba(251, 128, 128, 0.71);
+      }
+    }
+
+    li {
+      height: 100%;
+      display: inline-block;
+      width: auto;
+      float: left;
+      padding-top: 0.5%;
+      * {
+        display: inline;
+      }
+      button.main-controls {
+        font-size: 200%;
+        background: transparent;
+        border: none;
+      }
+      #slow-button{
+        font-size: 150%;
+      }
+      input[type="range"]{
+        width: 50%;
+      }
+      .sub-controls{
+        padding-left: 0;
+        height: auto;
+        display: none;
+        background: rgba(255, 255, 255, 0.53);
+        top: -230%;
+        position: absolute;
+        li{
+          width: 100%;
+          font-size: 150%;
+          height: auto;
+          button, #subtitles-off{
+            background: none;
+            border: none;
+          }
+        }
+      }
+    }
+    li.right{
+      float: right;
+      margin: 0 1%;
+    }
+    li.left{
+      float: left;
+    }
+    li:hover{
+      background: rgba(255, 255, 255, 0.53);
+    }
+  }
+  #subcontrols-container{
+    padding: 0.5%;
+    margin:0;
+    overflow:hidden;
+    bottom: 9%;
+    position:absolute;
+    height:9%;
+    width: 100%;
+    background:rgba(255, 255, 255, 0.53);
+    list-style: none;
+  }
+}
+
+/* styling for fullscreen */
+html:-ms-fullscreen {
+  width:100%;
+}
+:-webkit-full-screen {
+  background-color:transparent;
+}
+video:-webkit-full-screen + .controls {
+  background:#ccc; /* required for Chrome which doesn't heed the transparent value set above */
+}
+
+figure[data-fullscreen=true] {
+  max-width:100%;
+  width:100%;
+  margin:0;
+  padding:0;
+  max-height:100%;
+  video {
+    height:auto;
+  }
+  video::-webkit-media-controls {
+    display:none !important;
+  }
+  figcaption {
+    display:none;
+  }
+  #controls-container{
+    position:absolute;
+    bottom:0 !important;
+    z-index:2147483647;
+    height: 5% !important;
+    left: 0;
+  }
+}

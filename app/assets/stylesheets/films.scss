@@ -1,0 +1,35 @@
+// Place all the styles related to the Films controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#film-container{
+  width: 100%;
+  height: 100%;
+  .film-info-section{
+    width: 100%;
+    h2.film-name{
+      text-align: center;
+    }
+  }
+  .film-video-section{
+    width: 60%;
+    height: 63%;
+    position: relative;
+    margin: 0 auto;
+    #translation-container{
+      width: 20%;
+      display: inline-block;
+      height: 70%;
+      position: absolute;
+      color: black;
+      font-size:  20px;
+      h4.title{
+        text-align: center;
+      }
+      button{
+        margin: 0 auto;
+        display: block;
+      }
+    }
+  }
+
+}
